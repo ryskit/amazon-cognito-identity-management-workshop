@@ -1,0 +1,54 @@
+# Project information
+
+site_name: Serverless authentication and authorization
+site_short_name: Serverless authentication and authorization
+site_description: 'In this workshop, you learn how to build a serverless microservices application demonstrating end-to-end authentication and authorization using Amazon Cognito, Amazon API Gateway, AWS Lambda, and all things IAM. You have the opportunity to build an end-to-end functional app with a secure identity provider showcasing user authentication patterns. All attendees need a laptop, an active AWS Account, an AWS IAM Administrator, and a familiarity with core AWS services.'
+site_author: 'aws-security-workshops@amazon.com'
+site_url: 'https://serverless-idm.awssecworkshops.com/'
+
+# Repository
+repo_name: 'aws-samples/amazon-cognito-identity-management-workshop'
+repo_url: 'https://github.com/aws-samples/amazon-cognito-identity-management-workshop'
+
+# Copyright
+copyright: '&copy; 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# Configuration
+theme:
+  name: 'material'
+  logo: 'assets/images/aws_smile_logo.png'
+  favicon: 'assets/images/aws-favicon.ico'
+  feature:
+    tabs: true
+  custom_dir: 'docs/theme'
+
+# Customization
+extra_css:
+  - 'stylesheets/custom.css'
+extra:
+  social:
+    - type: 'home'
+      link: 'https://awssecworkshops.com'
+    - type: 'shield'
+      link: 'https://aws.amazon.com/security/'
+    - type: 'twitter'
+      link: 'https://twitter.com/awssecurityinfo?lang=en'
+    - type: 'rss'
+      link: 'https://aws.amazon.com/blogs/security/'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.details
+
+# Navigation
+nav:
+  - Overview: 'index.md'
+  - 'Module 0: Environment setup': '00-env-setup.md'
+  - 'Module 1: User authentication': '01-user-auth.md'
+  - 'Module 2: Backend authorization': '02-backend-auth.md'
+  - 'Module 3: IAM Authorization': '03-iam-auth.md'
+  - 'Module 4: Clean up': '04-clean-up.md'
+  - Contributing: 'contribute.md'
+  - License: 'license.md'
