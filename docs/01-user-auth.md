@@ -13,7 +13,7 @@ The architecture for this module is very straightforward. All of your static web
 
 For this module, we will be creating a Cognito User Pool as our secure user directory then configuring our application to use the AWS Amplify library to easily integrate Amazon Cognito into our application.
 
-![Website architecture](../images/wildrydes-module1-architecture.png)
+![Website architecture](./images/wildrydes-module1-architecture.png)
 
 ## Run the website locally
 
@@ -28,11 +28,11 @@ For this module, we will be creating a Cognito User Pool as our secure user dire
 
 2. Now that the development server has started, click **Preview Running Application** in the top of the screen next to the Run button.
 
-    ![Cloud9 Preview](../images/cloud9-local-preview.png)  
+    ![Cloud9 Preview](./images/cloud9-local-preview.png)  
 
 3. The web application will load in a small window next to the terminal at the bottom of the Cloud9 IDE. Click the **re-size button** next to the word **Browser** to open this window in a new tab.
 
-    ![Cloud9 Preview Re-size](../images/cloud9-resize-live-preview.png)   
+    ![Cloud9 Preview Re-size](./images/cloud9-resize-live-preview.png)   
 
    As you make changes to the web application, this tab will automatically refresh to reflect your changes. Leave this tab open and return to the Cloud9 IDE tab to continue the workshop.
 
@@ -58,7 +58,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 6. Choose **Step through settings** to configure our user pool options.
 
-	![User Pool Setup Step 1](../images/cognito-userpool-setup-step1.png)
+	![User Pool Setup Step 1](./images/cognito-userpool-setup-step1.png)
 
 7. Leave **Username** selected, but additionally select **Also allow sign in with verified email address** and **Also allow sign in with verified phone number**.
 
@@ -66,11 +66,11 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 9. Choose **Next step**.
 
-	![User Pool Setup Step 2](../images/cognito-userpool-setup-step2.png)
+	![User Pool Setup Step 2](./images/cognito-userpool-setup-step2.png)
 
 10. Leave password policies and user sign up settings set to default settings and choose **Next step**.
 
-	![User Pool Setup Step 3](../images/cognito-userpool-setup-step3.png)
+	![User Pool Setup Step 3](./images/cognito-userpool-setup-step3.png)
 
 11. Leave **MFA set to Off** for this workshop.
 
@@ -78,7 +78,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 13. Choose **Next step**.
 
-	![User Pool Setup Step 4](../images/cognito-userpool-setup-step4.png)
+	![User Pool Setup Step 4](./images/cognito-userpool-setup-step4.png)
 
 14. Leave all message and SES defaults as-is and choose **Next step**.
 
@@ -86,7 +86,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 16. Choose **No** to not remember your user's devices then click **Next step**.
 
-	![User Pool Setup Step 5](../images/cognito-userpool-setup-step5.png)
+	![User Pool Setup Step 5](./images/cognito-userpool-setup-step5.png)
 
 17. In the next screen, click the **Add an app client** *link*.
 
@@ -98,7 +98,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 21. Choose **Next step**.
 
-	![User Pool Setup Step 6](../images/cognito-userpool-setup-step6.png)
+	![User Pool Setup Step 6](./images/cognito-userpool-setup-step6.png)
 
 22. Leave all Lambda trigger settings set to *none*. These trigger settings allow you to extend the out-of-the-box sign-up and sign-in flows with your own custom logic, but we will not be using this feature in this workshop.
 
@@ -106,21 +106,21 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 24. Review summary of all provided settings for accuracy then choose **Create pool**.
 
-	![User Pool Setup Step 7](../images/cognito-userpool-setup-step7.png)
+	![User Pool Setup Step 7](./images/cognito-userpool-setup-step7.png)
 
 25. Within Cloud9, click the **+** symbol and choose to create **New File**. You will use this new blank editor tab as a scratchpad for various resource names and variables.
 
-	![Cloud9 Create Scratchpad Tab](../images/cloud9-createscratchpadtab.png)
+	![Cloud9 Create Scratchpad Tab](./images/cloud9-createscratchpadtab.png)
 
 26. Back in the AWS Cognito console, copy your new *User Pool Id* into the scratchpad tab.
 
-	![Copy User Pool ID](../images/cognito-userpool-copy-userpool-id.png)
+	![Copy User Pool ID](./images/cognito-userpool-copy-userpool-id.png)
 
 27. Choose **App clients** heading under *General settings* within the Cognito navigation panel.
 
 28. Copy the *App client ID* over to your scratchpad. You will be using both of these values later on.
 
-	![Copy User Pool App Client ID](../images/cognito-userpool-copy-appclient-id.png)
+	![Copy User Pool App Client ID](./images/cognito-userpool-copy-appclient-id.png)
 
 ## Create a Cognito Identity Pool
 
@@ -138,7 +138,7 @@ You will need to create a Cognito Identity Pool linked to the Cognito User Pool 
 
 1. Within the Cognito tab, input the User Pool ID and App client Id you copied previously to the scratchpad tab.
 
-	![Identity Pool Setup Step 1](../images/cognito-identitypool-setup-step1.png)
+	![Identity Pool Setup Step 1](./images/cognito-identitypool-setup-step1.png)
 
 1. Choose **Create Pool**.
 
@@ -148,11 +148,11 @@ You will need to create a Cognito Identity Pool linked to the Cognito User Pool 
 
 	!!! warning "Do not copy the quotation marks, but include the region code and ":" character."
 
-	![Copy Identity Pool Id to Cloud9 scratchpad](../images/cognito-identitypool-copyId.png)
+	![Copy Identity Pool Id to Cloud9 scratchpad](./images/cognito-identitypool-copyId.png)
 	
 1. Your scratchpad should now have values for the following Cognito resources:
 
-	![Cognito Setup IDs Scratchpad](../images/cognito-setup-scratchpad.png)
+	![Cognito Setup IDs Scratchpad](./images/cognito-setup-scratchpad.png)
 
 ## Integrate your application with Amazon Cognito
 
@@ -185,7 +185,7 @@ Amplify.configure(awsConfig);
 	
 After making this changes, your imports should be in the following order:
 	
-![Amplify imports order](../images/amplify-imports-order.png)
+![Amplify imports order](./images/amplify-imports-order.png)
 	
 **Save your changes** to the *website/src/index.js* file.
 

@@ -19,9 +19,6 @@ See the diagram below for a depiction of the complete architecture.
 
 ![Wild Rydes Web Application Architecture](./images/wildrydes-complete-architecture.png)
 
-## Presentation deck
-[Workshop Presentation Deck](./threat-detect-workshop-presentation.pdf)
-
 ## Modules
 
 This workshop is split into multiple modules. Each module builds upon the previous module as you expand the Wild Rydes application. You must complete each module before proceeding to the next.

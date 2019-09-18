@@ -8,7 +8,7 @@ In this module, you will expand your Wild Rydes application by enabling a profil
 
 Building on Modules 1 and 2, this module will add photo storage and management via an Amazon S3 bucket. For AWS resource access from a web application, Amazon Cognito will issue not only JWTs as we saw earlier, but then also allow users to assume an IAM role from within the application. This AWS IAM role will then allow their application to securely connect to upload and download photos from S3 (though any other AWS API would also work with this capability). To secure access to the photo storage and bucket, you will leverage IAM policies for fine-grained control.
 
-![Module 3 architecture](../images/wildrydes-module3-architecture.png)
+![Module 3 architecture](./images/wildrydes-module3-architecture.png)
 
 ## Setup S3 bucket for use with AWS Amplify
 
@@ -54,13 +54,13 @@ Browse to the IAM console and find your Cognito Identity Pool's authenticated us
 
 1. Select the **Auth* role** for your authenticated users.
 	
-	![IAM WildRydes Auth Role Selction](../images/iam-wildrydes-role-selection.png)
+	![IAM WildRydes Auth Role Selction](./images/iam-wildrydes-role-selection.png)
 	
 1. We want to grant permissions to this role explicitly so we will use an inline policy, which would be deleted with this role if it were ever to be deleted.
 
 1. Choose **Add inline policy** on the right-hand side to create a new inline policy associated to this IAM role.
 
-	![Add inline policy to WildRydes auth role](../images/iam-wildrydes-auth-role-add-inline-policy.png)
+	![Add inline policy to WildRydes auth role](./images/iam-wildrydes-auth-role-add-inline-policy.png)
 
 1. Choose the **JSON** tab to allow you to free-form edit the new policy.
 

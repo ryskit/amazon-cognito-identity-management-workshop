@@ -47,11 +47,11 @@ To setup your environment please expand **one** of the following dropdown sectio
 
     !!! info "When you launch the stack, CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore that template which is prefixed with "aws-cloud9-WildRydes-"."
 
-    ![CloudFormation Outputs open Cloud9](../images/cloud9_cfn_outputs.png)
+    ![CloudFormation Outputs open Cloud9](./images/cloud9_cfn_outputs.png)
 
 Once you have launched and navigated to your Cloud9 workspace URL shown in your CloudFormation stack outputs, you should have an IDE environment as shown below:
 
-![Cloud9 Initial Welcome Screen](../images/cloud9_initial_screen.png)
+![Cloud9 Initial Welcome Screen](./images/cloud9_initial_screen.png)
 
 You can run AWS CLI commands in here just like you would on your local computer. Verify that your user is logged in by running the following:
 

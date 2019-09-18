@@ -8,7 +8,7 @@ In this module, you will add a serverless backend to your Wild Rydes application
 
 Building on Module 1, this module will add a Serverless backend built using Amazon API Gateway and AWS Lambda. For persistence, you will use Amazon DynamoDB as a NoSQL data store. All of the above services are serverless so you can seamlessly scale your application as your demands grow. After creating the API, we will integrate our client application to call it via the AWS Amplify library.
 
-![Module 2 architecture](../images/wildrydes-module2-architecture.png)
+![Module 2 architecture](./images/wildrydes-module2-architecture.png)
 
 ## Launch the Serverless API backend
 
@@ -113,7 +113,7 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 3. Under your newly created API, choose **Authorizers**.
 
-    ![API Authorizer Settings](../images/apigateway-authorizer-settings.png)
+    ![API Authorizer Settings](./images/apigateway-authorizer-settings.png)
 
 4. Chose **Create New Authorizer**.
 
@@ -131,7 +131,7 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 11. Choose **Create**.
 
-    ![Create user pool authorizer screenshot](../images/create-user-pool-authorizer.png)
+    ![Create user pool authorizer screenshot](./images/create-user-pool-authorizer.png)
 
 **Verify your authorizer configuration**
 
@@ -147,13 +147,13 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 17. Paste the auth token into the **Authorization Token** field in the popup dialog.
 
-    ![Test Authorizer screenshot](../images/apigateway-test-authorizer.png)
+    ![Test Authorizer screenshot](./images/apigateway-test-authorizer.png)
 
 18. Click **Test** button and verify that the response code is 200 and that you see the claims for your user displayed. Since this is the identity token, the user's attributes are encoded within the JWT as claims which can be read parsed programatically.
 
 	!!! warning "If you do not receive successful test results as shown below, do not proceed until you're able to validate the authorizer is configured properly and passes this test."
 
-	![Successful Authorizer test screenshot](../images/apigateway-authorizer-test.png)
+	![Successful Authorizer test screenshot](./images/apigateway-authorizer-test.png)
 
 **Require Cognito authentication for API Gateway**
 
@@ -163,7 +163,7 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 21. Choose **Method Request**
 
-    ![Method Request Selection](../images/apigateway-method-request-settings.png)
+    ![Method Request Selection](./images/apigateway-method-request-settings.png)
 
 22. Choose the pencil icon next to `Authorization` to edit the setting.
 
@@ -171,11 +171,11 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 	
     !!! tip "If you don't see this option listed, **Reload** the browser page then this authorizer option should appear in the drop-down list."
 
-  ![API Gateway Authorizer Selection](../images/apigateway-authorizer-cognito-selection.png)
+  ![API Gateway Authorizer Selection](./images/apigateway-authorizer-cognito-selection.png)
 
 24. **Save** your selection by clicking the checkmark icon next to the drop down.
 
-  ![API Gateway Authorizer Confirmation](../images/apigateway-authorizer-cognito-confirmation.png)
+  ![API Gateway Authorizer Confirmation](./images/apigateway-authorizer-cognito-confirmation.png)
 
 25. Next, choose the **Actions** button at the top of the resources list.
 
@@ -224,7 +224,7 @@ Allow the application to refresh, sign-in again, and request a ride.
 
 The unicorn ride request should be fulfilled as before now. To see the full request headers which were sent, look at the developer console for an *API Request* informational message which includes the API Request details once expanded, including the full headers and body of the request.
 
-![Cognito Authorizer Request Console Log](../images/cognito-authorizer-request-console-log.png)
+![Cognito Authorizer Request Console Log](./images/cognito-authorizer-request-console-log.png)
 
 If the API now invokes correctly and application functions as expected summoning unicorns, you may proceed to the next module.
 

@@ -12,7 +12,7 @@ Building on Module 2, this module updates our Serverless backend built earlier u
 
 !!! tip "For production APIs, you should use either the token-based authorization OR request signing authorization via IAM demonstrated in this module, but not use both for the same API."
 
-![Module 2 architecture](../images/wildrydes-module2-architecture.png)
+![Module 2 architecture](./images/wildrydes-module2-architecture.png)
 
 ## Attach an IAM policy to your Cognito authenticated users' role
 
@@ -24,13 +24,13 @@ For us to be able to use request signing and IAM-based fine-grained access contr
 
 1. Search for **WildRydes** to see the **WildRydesAPI-StandardUserPolicy** which was created by the Serverless Backed CloudFormation template.
 
-	![WildRydes API IAM Policy Search](../images/iam-policies-wildrydesapi-search.png)
+	![WildRydes API IAM Policy Search](./images/iam-policies-wildrydesapi-search.png)
 	
 1. Click the **WildRydesAPI-StandardUserPolicy** policy name.
 
 1. Review the policy which was created by CloudFormation to authorize requests to your API Gateway deployment.
 
-	![WildRydesAPI Policy Details](../images/iam-wildrydesapi-policy-details.png)
+	![WildRydesAPI Policy Details](./images/iam-wildrydesapi-policy-details.png)
 	
     !!! info "This policy allows access to invoke any method on the /ride path for any API stage of your API gateway backend. For more details about authoring IAM policies for API Gateway, visit the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html" target="_blank">controlling access to an API with IAM permissions</a> documentation."
 
@@ -44,19 +44,19 @@ For us to be able to use request signing and IAM-based fine-grained access contr
 	
 	!!! info "If the full name of the role is hidden from view due to column width, you can hover over the partially visible name of the role to see the full name of the role as a tool tip."
 	
-	![IAM WildRydes Auth Role Selction](../images/iam-wildrydes-role-selection.png)
+	![IAM WildRydes Auth Role Selction](./images/iam-wildrydes-role-selection.png)
 
 1. Choose **Attach policies**.
 
 1. Search for `WildRydes` and check the box next to the policy named *WildRydesAPI-StandardUserAccess*.
 
-	![Attach API Gateway IAM Policy](../images/iam-cognito-authrole-attach-apigateway-policy.png)
+	![Attach API Gateway IAM Policy](./images/iam-cognito-authrole-attach-apigateway-policy.png)
 
 1. Choose **Attach policy**.
 
 1. You should now see the *WildRydesAPI-StandardUserAccess* policy associated with your Cognito IAM auth role.
 
-	![Permissions after adding IAM policy](../images/iam-cognito-authrole-permissions-after-policy-update.png)
+	![Permissions after adding IAM policy](./images/iam-cognito-authrole-permissions-after-policy-update.png)
 
 ## Enable API Gateway authorization with AWS IAM
 
@@ -74,17 +74,17 @@ In the Amazon API Gateway console, update the authorization type to *AWS_IAM* fo
 
 5. Choose **Method Request**
 
-    ![Method Request Selection](../images/apigateway-method-request-settings.png)
+    ![Method Request Selection](./images/apigateway-method-request-settings.png)
 
 6. Choose the pencil icon next to **Authorization** to edit the setting.
 
 7. Select **AWS_IAM** from the list of authorization options presented.
 
-  ![API Gateway Authorizer Selection](../images/apigateway-authorizer-iam-selection.png)
+  ![API Gateway Authorizer Selection](./images/apigateway-authorizer-iam-selection.png)
 
 8. **Save** your selection by clicking the checkmark icon next to the drop down.
 
-  ![API Gateway Authorizer Confirmation](../images/apigateway-authorizer-iam-confirmation.png)
+  ![API Gateway Authorizer Confirmation](./images/apigateway-authorizer-iam-confirmation.png)
 
 9. Next, choose the **Actions** button at the top of the resources list.
 
