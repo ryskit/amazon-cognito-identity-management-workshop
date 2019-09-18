@@ -29,7 +29,7 @@ To setup your environment please expand **one** of the following dropdown sectio
 
     2. The **Specify an Amazon S3 template URL** is already selected and the template URL is automatically added.  Click **Next**.
 
-    3. On the **Specify Details** click **Next**. 
+    3. On the **Specify Details** click **Next** (leave defaults). 
 	
     4. On the **Options** click **Next** \(leave everything on this page as the default\).
 
@@ -43,7 +43,7 @@ To setup your environment please expand **one** of the following dropdown sectio
 
 <a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes pre-packaged with essential tools for popular programming languages and the AWS Command Line Interface (CLI) pre-installed so you don’t need to install files or configure your laptop for this workshop. 
 
-1. With the *WildRydes-Cloud9* stack selected, click on the **Outputs** tab and copy the value shown for the *Cloud9IDE* to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
+1. With the **serverless-idm-cloud9** stack selected, click on the **Outputs** tab and copy the value shown for the *Cloud9IDE* to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
 
     !!! info "When you launch the stack, CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore that template which is prefixed with "aws-cloud9-WildRydes-"."
 

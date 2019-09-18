@@ -1,6 +1,6 @@
 # Module 1 <small>User authentication</small>
 
-**Time**: 20 minutes
+**Time**: 45 minutes
 
 In this module, you will create an Amazon Cognito User Pool and Identity Pool for the Wild Rydes application.
 The Cognito User Pool will store user profile information and provide sign-up and sign-in capabilities, with the Cognito Identity Pool providing the ability to assume an Identity and Access Management (IAM) role from within the application.
@@ -17,13 +17,13 @@ For this module, we will be creating a Cognito User Pool as our secure user dire
 
 ## Run the website locally
 
-1. From your Cloud9 workspace, select the terminal window and when you are within your **~/environment/aws-serverless-workshops/Auth/website** directory, run the following command to start the local web server 
+1. From your Cloud9 workspace, select the terminal window and when you are within your **~/environment/amazon-cognito-identity-management-workshop/website** directory, run the following command to start the local web server 
 
     ```
     yarn start
     ```
 
-    Wait for the development server to start. You can ignore any message saying *Compiled with warnings* as we will resolve these warnings as we add our functionality to the application.
+    !!! info "Wait for the development server to start. You can ignore any message saying *Compiled with warnings* as we will resolve these warnings as we add our functionality to the application."
 
 
 2. Now that the development server has started, click **Preview Running Application** in the top of the screen next to the Run button.
@@ -144,9 +144,9 @@ You will need to create a Cognito Identity Pool linked to the Cognito User Pool 
 
 1. Choose **Allow** to allow Cognito Identity Pools to setup IAM roles for your application's users. Permissions and settings of these roles can be customized later.
 
-1. Copy/paste the *Identity Pool ID*, highlighted in red within the code sample in the Get AWS Credentials section, into your Cloud9 scatchpad editor tab.
+1. Copy/paste the **Identity Pool ID**, highlighted in red within the code sample in the Get AWS Credentials section, into your Cloud9 scatchpad editor tab.
 
-	> Do not copy the quotation marks, but include the region code and ":" character.
+	!!! warning "Do not copy the quotation marks, but include the region code and ":" character."
 
 	![Copy Identity Pool Id to Cloud9 scratchpad](../images/cognito-identitypool-copyId.png)
 	
@@ -160,21 +160,21 @@ Now that you've created and configured your Cognito User Pool and Identity Pool,
 
 You will import the <a href="https://aws-amplify.github.io/" target="_blank">AWS Amplify</a> JavaScript library into the project then add sign-up and sign-in utility classes to integrate with our existing UI and front-end components.
 
-You'll need to complete the implementation of the onSubmitForm and onSubmitVerification methods within the **/Auth/website/src/auth/signIn.js** file, as well as the methods of the same name within the **/Auth/website/src/auth/signUp.js** file. Finally, you'll need to complete the implementation of a method to check whether the user is authenticated within the **/Auth/website/src/index.js** page.
+You'll need to complete the implementation of the onSubmitForm and onSubmitVerification methods within the **/website/src/auth/signIn.js** file, as well as the methods of the same name within the **/website/src/auth/signUp.js** file. Finally, you'll need to complete the implementation of a method to check whether the user is authenticated within the **/website/src/index.js** page.
 
-1. Before using any AWS Amplify modules, we first need to configure Amplify to use our newly created Cognito resources by updating **/Auth/website/src/amplify-config.js**.
+1. Before using any AWS Amplify modules, we first need to configure Amplify to use our newly created Cognito resources by updating **/website/src/amplify-config.js**.
 
 1. After opening this file in your Cloud9 IDE editor, copy the following parameter values from your previous scratchpad into the config value parameter placeholders:
 	- `identityPoolId`
 	- `region`
 	- `userPoolId`
-	- `userPoolWebClientId`
+	- `userPoolWebClientId (App Client ID)`
 
 	!!! warning     "Be sure to fill in the **'' blanks** with your config values. You do not need to modify the example values shown in the comments as they are just for reference and not leveraged by your application."
 
 1. **Save your changes** to the Amplify config file so your new  settings take effect. Any unsaved changes to a file are indicated by a dot icon in the tab of the editor so if you see a gray dot next to the file name, you may have forgotten to save.
 
-1. Next, edit the *website/src/index.js* file to add the following lines to the **top of the file** **(but below all the other imports)** to configure Amplify then save your changes:
+1. Next, edit the **website/src/index.js** file to add the following lines to the **top of the file** **(but below all the other imports)** to configure Amplify then save your changes:
 
 ```javascript
 import Amplify from 'aws-amplify';
@@ -199,12 +199,12 @@ const isAuthenticated = () => Amplify.Auth.user !== null;
 
 **Save your changes** to the */website/src/index.js* file.
 
-Now that we've imported the Amplify and configured the Amplify library, we need to update our application's code to sign-up users using Amplify and Cognito User Pools by finding and replacing the following methods within the **/website/src/auth/SignUp.js** file with the following code.
+Now that we've imported Amplify and configured the Amplify library, we need to update our application's code to sign-up users using Amplify and Cognito User Pools by finding and replacing the following methods within the **/website/src/auth/SignUp.js** file with the following code.
 
 !!! tip     "Only replace the following two methods. The rest of the SignUp.js file should not be modified"
-	The onSubmitForm method handles the event when the registration form is submitted. This calls the Auth.signUp method from the AWS Amplify library which registers the user with your Cognito User Pool.
+	The **onSubmitForm** method handles the event when the registration form is submitted. This calls the Auth.signUp method from the AWS Amplify library which registers the user with your Cognito User Pool.
 	
-	The onSubmitVerification method handles the event when the verification code entry form is submitted after the initial registration request. This calls the Auth.confirmSignUp method from the AWS Amplify library which confirms the user registration within your Cognito User Pool.
+	The **onSubmitVerification** method handles the event when the verification code entry form is submitted after the initial registration request. This calls the Auth.confirmSignUp method from the AWS Amplify library which confirms the user registration within your Cognito User Pool.
 
 ```javascript
 async onSubmitForm(e) {
@@ -260,9 +260,9 @@ async onSubmitVerification(e) {
 You additionally need to integrate the sign-in capability to use AWS Amplify and Cognito by finding and replacing the following methods within the **/website/src/auth/SignIn.js** file with the code below.
 
 !!! tip     "You only need to the following two methods. The rest of the SignIn.js file should not be modified."
-	The onSubmitForm method initiates the signin request with your Cognito User Pool by invoking the Auth.signIn method from AWS Amplify then sets the local state appropriately to indicate the user has signed in successfully.
+	The **onSubmitForm** method initiates the signin request with your Cognito User Pool by invoking the Auth.signIn method from AWS Amplify then sets the local state appropriately to indicate the user has signed in successfully.
 	
-	The onSubmitVerification method is used to submit a verification code whenever multi-factor authentication is required to authenticate. For this workshop, this method will not be invoked since you did not require multi-factor authentication earlier when configuring your Cognito User Pool.  
+	The **onSubmitVerification** method is used to submit a verification code whenever multi-factor authentication is required to authenticate. For this workshop, this method will not be invoked since you did not require multi-factor authentication earlier when configuring your Cognito User Pool.  
 
 ```javascript
 async onSubmitForm(e) {
@@ -322,6 +322,8 @@ Return to your browser tab where you started your Wild Rydes application earlier
 Visit the **/register** path to sign-up as a new user, providing a valid phone number with `+country_code` first preceeding the number. For a US-based phone number, an example would be `+14251234567`. You should then see that a verification message is sent with a one-time code upon registering, which is required before you're able to sign-in.
 
 After signing up as a new user, sign-in with the same user at the */signin* path. If the page loads a map, sign-in was successful and you have successfully integrated Cognito for app authentication.
+
+Below are the step-by-step instructions:
 
 1. Visit `/register` path of your Cloud9's website to go to the registration page.
 

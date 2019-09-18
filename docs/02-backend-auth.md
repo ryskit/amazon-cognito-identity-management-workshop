@@ -1,8 +1,8 @@
-# Module 1 <small>Backend authorization</small>
+# Module 2 <small>Backend authorization</small>
 
-**Time**: 15 minutes
+**Time**: 30 minutes
 
-In this module, you will add a serverless backend to your Wild Rydes application leveraging [Amazon API Gateway](https://aws.amazon.com/api-gateway/) and [AWS Lambda](https://aws.amazon.com/lambda/). You will then enable authentication and authorization on your API to secure the backend to only accept valid, authorized requests.
+In this module, you will add a serverless backend to your Wild Rydes application leveraging <a href="https://aws.amazon.com/api-gateway/" target="_blank">Amazon API Gateway</a> and <a href="https://aws.amazon.com/lambda/" target="_blank">AWS Lambda</a>. You will then enable authentication and authorization on your API to secure the backend to only accept valid, authorized requests.
 
 ## Architecture
 
@@ -14,7 +14,7 @@ Building on Module 1, this module will add a Serverless backend built using Amaz
 
 You will be creating your Serverless API built with Amazon API Gateway, AWS Lambda, and Amazon DynamoDB via a CloudFormation template. Since this workshop is focused on authentication and authorization, this template will create the backend infrastructure, but not enable any security settings and the rest of the module will enable and configure such settings.
 
-Create a new WildRydes Serverless Backend stack by launching a CloudFormation stack based on the **ServerlessBackend.yaml** file in the module 2 folder. Name the stack `WildRydesBackend`.
+Create a new WildRydes Serverless Backend stack by launching a CloudFormation stack based on the **serverless-backend.yaml** file in the templates folder.
 
 This WildRydes backend CloudFormation template will provision your API Gateway deployment with Lambda functions for compute, a DynamoDB database for persistence, and an S3 bucket for photo uploads which will be used in module 3. Additionally, the necessary function invocation permissions and execution role for the Lambda function will also be provisioned.
 
@@ -38,13 +38,11 @@ us-west-2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home
     !!! warning "It will take a few minutes for the Stack to create."
         Choose the **Stack Info** tab to go to the overall stack status page and wait until the stack is fully launched and shows a status of *CREATE_COMPLETE*. Click the refresh icon periodically to see progress update.
 
-6. With the *WildRydesBackend* stack selected, click on the **Outputs** tab and copy the value shown for the *WildRydesApiInvokeUrl* to your Cloud9 scratchpad editor tab.
+6. With the **serverless-idm-backend** stack selected, click on the **Outputs** tab and copy the value shown for the **WildRydesApiInvokeUrl** to your Cloud9 scratchpad editor tab.
 
 ## Integrate your API
 
 Now that you have created our Serverless API, you need to update your Wild Rydes web application to integrate with it. You will leverage the AWS Amplify client library to make API calls and inject security seamlessly to support your authentication and authorization scenarios.
-
-First, expand your **amplify-config.js** file to store your new API Gateway endpoint. Next, within **MainApp.js** under pages, enable the **hasAPI** method by uncommenting its functionality. Additionally, update the **getData** method to capture the latitude and longitude selected on the map and send to the API as a PickupLocation object including both the latitude and longitude.
 
 First, you need to update the **/website/src/amplify-config.js** file to include your new API Gateway endpoint. Store the endpoint including the /prod at the end in the endpoint property under the **WildRydesAPI** section.
 
@@ -102,16 +100,16 @@ You should be informed of your unicorn's arrival momentarily.
 
 ## Enable API Gateway authorization
 
-Amazon API Gateway can use the JSON Web tokens (JWT) returned by Cognito User Pools to authenticate API calls. In this step, you'll configure an authorizer for your API to use the user pool you created in [module 1](../1_UserAuthentication).
+Amazon API Gateway can use the JSON Web tokens (JWT) returned by Cognito User Pools to authenticate API calls. In this step, you'll configure an authorizer for your API to use the user pool you created in module 1.
 
-Since Cognito User Pools implements [OpenID Connect](https://en.wikipedia.org/wiki/OpenID_Connect) JSON web tokens, API Gateway is able to compare the signature of an access or identity token against the known public keys of the Cognito User Pool which allows verification and authentication to happen without having to write additional code in your application.
+Since Cognito User Pools implements <a href="https://openid.net/connect/" target="_blank">OpenID Connect</a> JSON web tokens, API Gateway is able to compare the signature of an access or identity token against the known public keys of the Cognito User Pool which allows verification and authentication to happen without having to write additional code in your application.
 
 In the Amazon API Gateway console, create a new Cognito user pool authorizer for your API. Configure it to use the user pool that you created in the previous module. You can test the configuration in the console by copying and pasting the identity token printed to the console after you log in via the `/signin` path of your current website. Once setup, you will change your application's code to send the proper JSON web token with its API requests to authenticate.
 
 
 1. In the AWS Management Console choose **Services** then select **API Gateway** under Networking and Content Delivery.
 
-2. Choose the API named *WildRydes*.
+2. Choose the API named **WildRydes**.
 
 3. Under your newly created API, choose **Authorizers**.
 
@@ -139,7 +137,7 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 12. In a different browser tab, return to your Wild Rydes application and  sign-in if you're not already signed in. After signing in, you should be redirected to */app*. Open your [browser's developer console](https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console) and browse to the console log output section.
 
-13. Look for the console log to say *Cognito User Identity Token:* and a long string beneath the message.
+13. Look for the console log to say **Cognito User Identity Token:** and a long string beneath the message.
 
 14. Copy the long string to your clipboard without the intro message. You will need to copy across multiple lines to fully copy the token in its entirety.
 
@@ -153,7 +151,7 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 18. Click **Test** button and verify that the response code is 200 and that you see the claims for your user displayed. Since this is the identity token, the user's attributes are encoded within the JWT as claims which can be read parsed programatically.
 
-	> If you do not receive successful test results as shown below, do not proceed until you're able to validate the authorizer is configured properly and passes this test.
+	!!! warning "If you do not receive successful test results as shown below, do not proceed until you're able to validate the authorizer is configured properly and passes this test."
 
 	![Successful Authorizer test screenshot](../images/apigateway-authorizer-test.png)
 
@@ -170,7 +168,8 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 22. Choose the pencil icon next to `Authorization` to edit the setting.
 
 23. Select your new Cognito Authorizer from the list of options presented.
-	> If you don't see this option listed, **Reload** the browser page then this authorizer option should appear in the drop-down list.
+	
+    !!! tip "If you don't see this option listed, **Reload** the browser page then this authorizer option should appear in the drop-down list."
 
   ![API Gateway Authorizer Selection](../images/apigateway-authorizer-cognito-selection.png)
 
@@ -194,11 +193,11 @@ Now that you've deployed the new authorizer configuration to production, all API
 
 30. You should receive an *Error finding unicorn*. If you open the developer console, you will see that we received a HTTP 401 error, which means it was an unauthorized request. To authenticate our requests properly, we need to send an Authorization header.
 
-	> If you at first still that you requests go through without any errors, try requesting a ride again in 30-60 seconds to allow the API Gateway changes to fully propagate.
+	!!! tip "If you at first still that you requests go through without any errors, try requesting a ride again in 30-60 seconds to allow the API Gateway changes to fully propagate."
 
-31. Go back to Cloud9 and open the */website/src/pages/MainApp.js* files.
+31. Go back to Cloud9 and open the **/website/src/pages/MainApp.js** files.
 
-32. Browse down to the *getData* method you previously updated. You will notice that the headers for the request currently include a blank *Authorization* header.
+32. Browse down to the **getData** method you previously updated. You will notice that the headers for the request currently include a blank *Authorization* header.
 
 33. Replace your current *getData* method with the following code which sends your user's Cognito identity token, encoded as a JSON web token, in the *Authorization* header with every request.
 
@@ -227,15 +226,10 @@ The unicorn ride request should be fulfilled as before now. To see the full requ
 
 ![Cognito Authorizer Request Console Log](../images/cognito-authorizer-request-console-log.png)
 
-If the API now invokes correctly and application funcions as expected summoning unicorns, you may **proceed to complete either**:
+If the API now invokes correctly and application functions as expected summoning unicorns, you may proceed to the next module.
 
 ---
 
 ## Optional: API Gateway IAM Authorization
 
-- **Optional module 2 extension** with [Fine-grained IAM-based authorization with API Gateway](./Optional-APIGateway-IAMAuth.md)
-
-	OR
-
-- To proceed to the module 3 *without completing the optional module extension*, choose [client-side IAM-based Authorization](../3_IAMAuthorization).
-
+- **Module 2 extension** with [Fine-grained IAM-based authorization with API Gateway](./02-backend-auth-iam.md)

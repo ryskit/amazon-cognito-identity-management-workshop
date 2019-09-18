@@ -1,9 +1,28 @@
 ---
   AWSTemplateFormatVersion: 2010-09-09
+
   Description: VPC Infrastructure setup and deployment of Cloud9 IDE for Serverless Auth Workshop
+
+  Parameters:
+  
+    EventEngine:
+      Type: String
+      Default: No
+      AllowedValues: 
+        - Yes
+        - No
+      Description: Are you at an AWS sponosored event where Event Engine is being used?
+
+  Conditions:
+
+    Cloud9EEOwnership: !Equals [ !Ref EventEngine, Yes ]
+
+    Cloud9UserOwnership: !Equals [ !Ref EventEngine, No ]
+
   Resources:
     # Create the Cloud9 Instance in a specified Subnet
     Cloud9Instance:
+      Condition: Cloud9UserOwnership
       Type: "AWS::Cloud9::EnvironmentEC2"
       Properties:
         Description: "Cloud9 IDE for the Serverless Authentication and Authorization Workshop"
@@ -11,6 +30,19 @@
         InstanceType: t2.micro
         Name: !Sub ${AWS::StackName}-Cloud9Instance
         SubnetId: !Ref PublicSubnet1
+      DependsOn: GatewayToInternet
+    
+    # Create the Cloud9 Instance in a specified Subnet
+    Cloud9InstanceEE:
+      Condition: Cloud9EEOwnership
+      Type: "AWS::Cloud9::EnvironmentEC2"
+      Properties:
+        Description: "Cloud9 IDE for the Serverless Authentication and Authorization Workshop"
+        AutomaticStopTimeMinutes: 60
+        InstanceType: t2.micro
+        Name: !Sub ${AWS::StackName}-Cloud9Instance
+        SubnetId: !Ref PublicSubnet1
+        OwnerArn: !Sub "arn:aws:sts::${AWS::AccountId}:assumed-role/TeamRole/MasterKey"
       DependsOn: GatewayToInternet
 
     # Create the VPC infrastructure
@@ -69,8 +101,14 @@
 
   Outputs:
     Cloud9IDE:
+      Condition: Cloud9UserOwnership
       Value:
         !Join ["",["https://",!Ref "AWS::Region",".console.aws.amazon.com/cloud9/ide/",!Ref Cloud9Instance,"?region=",!Ref "AWS::Region"]]
+    Cloud9IDEEE:
+      Condition: Cloud9EEOwnership
+      Value:
+        !Join ["",["https://",!Ref "AWS::Region",".console.aws.amazon.com/cloud9/ide/",!Ref Cloud9InstanceEE,"?region=",!Ref "AWS::Region"]]
+
     Vpc:
       Description: Vpc for Cloud9 instance
       Value: !Ref Vpc
