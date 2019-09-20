@@ -13,6 +13,13 @@
         - No
       Description: Are you at an AWS sponosored event where Event Engine is being used?
 
+    ResourceName:
+      Type: String
+      Default: serverless-idm-wksp
+      AllowedValues: 
+        - serverless-idm-wksp
+      Description: Prefix of Resources created for this workshop.
+
   Conditions:
 
     Cloud9EEOwnership: !Equals [ !Ref EventEngine, Yes ]
@@ -28,7 +35,7 @@
         Description: "Cloud9 IDE for the Serverless Authentication and Authorization Workshop"
         AutomaticStopTimeMinutes: 60
         InstanceType: t2.micro
-        Name: !Sub ${AWS::StackName}-Cloud9Instance
+        Name: !Join [ '-', [ !Ref ResourceName, 'ide'  ] ]
         SubnetId: !Ref PublicSubnet1
       DependsOn: GatewayToInternet
     
@@ -40,7 +47,7 @@
         Description: "Cloud9 IDE for the Serverless Authentication and Authorization Workshop"
         AutomaticStopTimeMinutes: 60
         InstanceType: t2.micro
-        Name: !Sub ${AWS::StackName}-Cloud9Instance
+        Name: !Join [ '-', [ !Ref ResourceName, 'ide'  ] ]
         SubnetId: !Ref PublicSubnet1
         OwnerArn: !Sub "arn:aws:sts::${AWS::AccountId}:assumed-role/TeamRole/MasterKey"
       DependsOn: GatewayToInternet
@@ -53,7 +60,7 @@
         EnableDnsHostnames: true
         Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-VPC"
+          Value: !Join [ '-', [ !Ref ResourceName, 'VPC'  ] ]
 
     PublicSubnet1:
       Type: AWS::EC2::Subnet
@@ -63,14 +70,14 @@
         CidrBlock: 172.20.1.0/24
         Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-PublicSubnet1"
+          Value: !Join [ '-', [ !Ref ResourceName, 'PublicSubnet1'  ] ]  
 
     InternetGateway:
       Type: AWS::EC2::InternetGateway
       Properties:
         Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-InternetGateway"
+          Value: !Join [ '-', [ !Ref ResourceName, 'InternetGateway'  ] ]  
 
     GatewayToInternet:
       Type: AWS::EC2::VPCGatewayAttachment
@@ -84,7 +91,7 @@
         VpcId: !Ref Vpc
         Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-InternetGateway"
+          Value: !Join [ '-', [ !Ref ResourceName, 'PublicRouteTable'  ] ]
 
     PublicRoute:
       Properties:
@@ -113,9 +120,9 @@
       Description: Vpc for Cloud9 instance
       Value: !Ref Vpc
       Export:
-        Name: !Sub ${AWS::StackName}-Vpc
+        Name: !Join [ '-', [ !Ref ResourceName, 'VPC'  ] ]
     PublicSubnet1:
       Description: Public Subnet for Cloud9 Instance
       Value: !Ref PublicSubnet1
       Export:
-        Name: !Sub ${AWS::StackName}-PublicSubnet1
+        Name: !Join [ '-', [ !Ref ResourceName, 'PublicSubnet1'  ] ]
