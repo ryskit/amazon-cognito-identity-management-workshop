@@ -27,6 +27,7 @@
     Cloud9UserOwnership: !Equals [ !Ref EventEngine, No ]
 
   Resources:
+
     # Create the Cloud9 Instance in a specified Subnet
     Cloud9Instance:
       Condition: Cloud9UserOwnership
@@ -105,6 +106,74 @@
         SubnetId: !Ref PublicSubnet1
         RouteTableId: !Ref PublicRouteTable
       Type: AWS::EC2::SubnetRouteTableAssociation
+    
+    # Create Pre Sign-Up Lambda Trigger Role
+    LambdaPreSignUpRole: 
+      Type: AWS::IAM::Role
+      Properties: 
+        RoleName: !Join [ '-', [ !Ref ResourceName, 'lambda', 'pre-sign-up'  ] ]
+        AssumeRolePolicyDocument: 
+          Version: 2012-10-17
+          Statement: 
+            - 
+              Effect: Allow
+              Principal: 
+                Service: 
+                  - lambda.amazonaws.com
+              Action: 
+                - sts:AssumeRole
+        Path: /
+        Policies: 
+          - 
+            PolicyName: PreSignUpPolicy
+            PolicyDocument: 
+              Version: 2012-10-17
+              Statement: 
+                - 
+                  Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: '*'
+      
+    # Create Pre Sign-Up Lambda Trigger
+    LambdaPreSignUp: 
+      Type: "AWS::Lambda::Function"
+      Properties: 
+        FunctionName: 
+          Fn::Join:
+          - '-'
+          - [!Ref ResourceName, 'pre-sign-up']
+        Handler: "index.handler"
+        Environment:
+          Variables:
+            PREFIX: !Ref ResourceName
+        Role: 
+          Fn::GetAtt: 
+            - "LambdaPreSignUpRole"
+            - "Arn"
+        Code: 
+          ZipFile: |
+            exports.handler = (event, context, callback) => {
+              // Set the user pool autoConfirmUser flag after validating the email domain
+              event.response.autoConfirmUser = false;
+
+              // Split the email address so we can compare domains
+              var address = event.request.userAttributes.email.split("@")
+              
+              // This example uses a custom attribute "custom:domain"
+              if (event.request.userAttributes.hasOwnProperty("custom:domain")) {
+                  if ( event.request.userAttributes['custom:domain'] === address[1]) {
+                      event.response.autoConfirmUser = true;
+                  }
+              }
+
+              // Return to Amazon Cognito
+              callback(null, event);
+            };
+        Runtime: "nodejs8.10"
+        Timeout: "35"
 
   Outputs:
     Cloud9IDE:

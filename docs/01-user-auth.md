@@ -15,29 +15,6 @@ For this module, we will be creating a Cognito User Pool as our secure user dire
 
 ![Website architecture](./images/wildrydes-module1-architecture.png)
 
-## Run the website locally
-
-1. From your Cloud9 workspace, select the terminal window and when you are within your **~/environment/amazon-cognito-identity-management-workshop/website** directory, run the following command to start the local web server 
-
-    ```
-    yarn start
-    ```
-
-    !!! info "Wait for the development server to start. You can ignore any message saying *Compiled with warnings* as we will resolve these warnings as we add our functionality to the application."
-
-
-2. Now that the development server has started, click **Preview Running Application** in the top of the screen next to the Run button.
-
-    ![Cloud9 Preview](./images/cloud9-local-preview.png)  
-
-3. The web application will load in a small window next to the terminal at the bottom of the Cloud9 IDE. Click the **re-size button** next to the word **Browser** to open this window in a new tab.
-
-    ![Cloud9 Preview Re-size](./images/cloud9-resize-live-preview.png)   
-
-   As you make changes to the web application, this tab will automatically refresh to reflect your changes. Leave this tab open and return to the Cloud9 IDE tab to continue the workshop.
-
-!!! info    "Though the Wild Rydes website may look functional, there is currently no integration for sign-up or sign-in requests to go anywhere."
-
 ## Create a Cognito User Pool
 
 Amazon Cognito User Pools lets you add user sign-up and sign-in capabilities to your web and mobile apps quickly and easily. In this step, we'll create a Cognito user pool for our Wild Rydes app.
@@ -62,7 +39,12 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 7. Leave **Username** selected, but additionally select **Also allow sign in with verified email address** and **Also allow sign in with verified phone number**.
 
-8. Leave all other attribute defaults as-is.
+8. Add a custom attribute for **genre** that is mutable.  This attribute is to give the Unicorn an idea of the riders favorite music genre
+
+    ![Custom attribute](./images/custom-attribute.png)
+
+    !!! info "User Pool Attributes"
+        Cognito User Pools have a standard set of attributes available for all users in the pool.  These are implemented following the <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims" target="_blank">OpenID Connect specification</a>.  You can also optionally create up to 25 custom attributes to match any unique claims requirements you may have for your applications.
 
 9. Choose **Next step**.
 
@@ -215,7 +197,8 @@ async onSubmitForm(e) {
             password: this.state.password,
             attributes: {
                 email: this.state.email,
-                phone_number: this.state.phone
+                phone_number: this.state.phone,
+                'custom:genre': this.state.genre
             },
             validationData: []
         };
@@ -343,4 +326,18 @@ Below are the step-by-step instructions:
 
 1. Scroll down beyond the map to copy your user's identity token and decode it by pasting it into the 'encoded' input box at <a href="http://jwt.io" target="_blank">JWT.io</a>. You will see all of your user's attributes are encoded within the token, along with other standard attributes such as the time the token was issued, the time the token expires, the user's unique ID, and more.
 
-Once you have finished setting up the user authentication, you can proceed to the next module.
+**View user in User Pool**
+
+View user including device
+
+## End of Module 1
+
+Once you have finished setting up the user authentication please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).  If you've finished Module 1 early and would like to further customize the user authentication, feel free to run through the next few sections.
+
+---
+
+## Optional: Customize Sign-up Workflow
+
+## Optional: Custom Message Lambda
+
+## Optional: Pre Token Generation Lambda

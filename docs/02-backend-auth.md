@@ -98,7 +98,7 @@ Go back to your browser tab with Wild Rydes running and sign-in again at `/signi
 
 You should be informed of your unicorn's arrival momentarily.
 
-## Enable API Gateway authorization
+## Enable API Gateway authorization with Cognito
 
 Amazon API Gateway can use the JSON Web tokens (JWT) returned by Cognito User Pools to authenticate API calls. In this step, you'll configure an authorizer for your API to use the user pool you created in module 1.
 
@@ -228,8 +228,14 @@ The unicorn ride request should be fulfilled as before now. To see the full requ
 
 If the API now invokes correctly and application functions as expected summoning unicorns, you may proceed to the next module.
 
+## End of Module 2
+
+Once you have finished setting up the backend authorization please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).  If you've finished Module 2 early and to try out some alternative authorzation methods, feel free to run through the next few sections.
+
 ---
 
-## Optional: API Gateway IAM Authorization
+## Optional: API Gateway Authorization with AWS IAM
 
 - **Module 2 extension** with [Fine-grained IAM-based authorization with API Gateway](./02-backend-auth-iam.md)
+
+## Optional: API Gateway Authorization with a Lambda authorizor

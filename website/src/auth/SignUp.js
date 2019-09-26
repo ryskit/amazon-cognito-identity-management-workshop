@@ -29,6 +29,7 @@ class SignUp extends React.Component {
       stage: 0,
       email: '',
       phone: '',
+      genre: '',
       password: '',
       confirm: '',
       code: ''
@@ -47,7 +48,8 @@ class SignUp extends React.Component {
     this.setState({ 
       stage: 0, code: '',
       email: '', phone: '', 
-      password: '', confirm: ''
+      password: '', genre: '',
+      confirm: ''
     });
     // Go back to the home page
     this.props.history.replace('/');
@@ -59,6 +61,10 @@ class SignUp extends React.Component {
 
   onPhoneChanged(e) {
     this.setState({ phone: e.target.value });
+  }
+  
+  onGenreChanged(e) {
+    this.setState({ genre: e.target.value.toLowerCase() });
   }
 
   onPasswordChanged(e) {
@@ -81,6 +87,7 @@ class SignUp extends React.Component {
   renderSignUp() {
     const isValidEmail = this.isValidEmail(this.state.email);
     const isValidPassword = this.state.password.length > 1;
+    const isValidGenre = this.state.genre.length > 1;
     const isValidConfirmation = isValidPassword && this.state.password === this.state.confirm;
 
     return (
@@ -93,6 +100,7 @@ class SignUp extends React.Component {
           <form id="registrationForm" onSubmit={(e) => this.onSubmitForm(e)}>
             <input className={isValidEmail?'valid':'invalid'} type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.onEmailChanged(e)}/>
             <input className='valid' type="phone" placeholder="Phone" value={this.state.phone} onChange={(e) => this.onPhoneChanged(e)}/>
+            <input className='valid' type="Genre" placeholder="Genre" value={this.state.genre} onChange={(e) => this.onGenreChanged(e)}/>
             <input className={isValidPassword?'valid':'invalid'} type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.onPasswordChanged(e)}/>
             <input className={isValidConfirmation?'valid':'invalid'} type="password" placeholder="Confirm Password" value={this.state.confirm} onChange={(e) => this.onConfirmationChanged(e)}/>
             <input disabled={!(isValidEmail && isValidPassword && isValidConfirmation)} type="submit" value="Let's Ryde"/>

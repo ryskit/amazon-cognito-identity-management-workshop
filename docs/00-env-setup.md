@@ -65,7 +65,7 @@ You should see output indicating your account and user information:
 {
     "Account": "123456789012",
     "UserId": "AKIAI44QH8DHBEXAMPLE",
-    "Arn": "arn:aws:iam::123456789012:user/Alice"
+    "Arn": "arn:aws:iam::123456789012:user/Sasquatch"
 }
 ```
 !!! info "Keep your AWS Cloud9 IDE opened in a tab throughout this workshop as you'll be using it for most all activities."
@@ -99,6 +99,29 @@ yarn install
 
 !!! info  "Keep an open scratch pad open"
     Keep an open scratch pad in Cloud9 or a text editor on your local computer for notes.  When the step-by-step directions tell you to note something such as an ID or Amazon Resource Name (ARN), copy and paste that into the scratch pad tab.
+
+## Run the website locally
+
+1. From your Cloud9 workspace, select the terminal window and when you are within your **~/environment/amazon-cognito-identity-management-workshop/website** directory, run the following command to start the local web server 
+
+    ```
+    yarn start
+    ```
+
+    !!! info "Wait for the development server to start. You can ignore any message saying *Compiled with warnings* as we will resolve these warnings as we add our functionality to the application."
+
+
+2. Now that the development server has started, click **Preview Running Application** in the top of the screen next to the Run button.
+
+    ![Cloud9 Preview](./images/cloud9-local-preview.png)  
+
+3. The web application will load in a small window next to the terminal at the bottom of the Cloud9 IDE. Click the **re-size button** next to the word **Browser** to open this window in a new tab.
+
+    ![Cloud9 Preview Re-size](./images/cloud9-resize-live-preview.png)   
+
+   As you make changes to the web application, this tab will automatically refresh to reflect your changes. Leave this tab open and return to the Cloud9 IDE tab to continue the workshop.
+
+!!! info    "Though the Wild Rydes website may look functional, there is currently no integration for sign-up or sign-in requests to go anywhere."
 
 ---
 
