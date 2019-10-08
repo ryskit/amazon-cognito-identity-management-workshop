@@ -145,7 +145,7 @@
           Fn::Join:
           - '-'
           - [!Ref ResourceName, 'pre-sign-up']
-        Handler: "index.handler"
+        Handler: "index.lambda_handler"
         Environment:
           Variables:
             PREFIX: !Ref ResourceName
@@ -155,24 +155,60 @@
             - "Arn"
         Code: 
           ZipFile: |
-            exports.handler = (event, context, callback) => {
-              // Set the user pool autoConfirmUser flag after validating the email domain
-              event.response.autoConfirmUser = false;
+            # PASTE CODE HERE
+        Runtime: "python3.7"
+        Timeout: "35"
 
-              // Split the email address so we can compare domains
-              var address = event.request.userAttributes.email.split("@")
-              
-              // This example uses a custom attribute "custom:domain"
-              if (event.request.userAttributes.hasOwnProperty("custom:domain")) {
-                  if ( event.request.userAttributes['custom:domain'] === address[1]) {
-                      event.response.autoConfirmUser = true;
-                  }
-              }
-
-              // Return to Amazon Cognito
-              callback(null, event);
-            };
-        Runtime: "nodejs8.10"
+    # Create Custom Message Lambda Trigger Role
+    LambdaCustomMessageRole: 
+      Type: AWS::IAM::Role
+      Properties: 
+        RoleName: !Join [ '-', [ !Ref ResourceName, 'lambda', 'custom-message'  ] ]
+        AssumeRolePolicyDocument: 
+          Version: 2012-10-17
+          Statement: 
+            - 
+              Effect: Allow
+              Principal: 
+                Service: 
+                  - lambda.amazonaws.com
+              Action: 
+                - sts:AssumeRole
+        Path: /
+        Policies: 
+          - 
+            PolicyName: CustomMessagePolicy
+            PolicyDocument: 
+              Version: 2012-10-17
+              Statement: 
+                - 
+                  Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: '*'
+      
+    # Create Custom Message Lambda Trigger
+    LambdaCustomMessage: 
+      Type: "AWS::Lambda::Function"
+      Properties: 
+        FunctionName: 
+          Fn::Join:
+          - '-'
+          - [!Ref ResourceName, 'custom-message']
+        Handler: "index.lambda_handler"
+        Environment:
+          Variables:
+            PREFIX: !Ref ResourceName
+        Role: 
+          Fn::GetAtt: 
+            - "LambdaCustomMessageRole"
+            - "Arn"
+        Code: 
+          ZipFile: |
+            # PASTE CODE HERE
+        Runtime: "python3.7"
         Timeout: "35"
 
   Outputs:
