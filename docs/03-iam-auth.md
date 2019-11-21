@@ -1,4 +1,4 @@
-# Module 3 <small>AWS integration with IAM-based authorization</small>
+# Module 3 <small>Retrieving and using temporary AWS credentials</small>
 
 **Time**: 15 minutes
 

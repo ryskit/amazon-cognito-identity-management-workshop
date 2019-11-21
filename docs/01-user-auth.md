@@ -1,4 +1,4 @@
-# Module 1 <small>User authentication</small>
+# Module 1 <small>User signup and authentication</small>
 
 **Time**: 45 minutes
 
