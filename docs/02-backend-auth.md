@@ -244,7 +244,7 @@ This section updates your Serverless backend built earlier using Amazon API Gate
 
 !!! tip "For production APIs, you should use either the token-based authorization OR request signing authorization via IAM demonstrated in this module, but not use both for the same API."
 
-![Module 2 architecture](./images/wildrydes-module2-architecture.png)
+![Module 2 architecture](./images/wildrydes-module2-iam-architecture.png)
 
 **Attach an IAM policy to your Cognito authenticated users' role**
 

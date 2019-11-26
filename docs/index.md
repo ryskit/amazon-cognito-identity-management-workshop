@@ -29,5 +29,7 @@ This workshop is split into multiple modules. Each module builds upon the previo
 
 3. **IAM Authorization** - In this module, you will expand your Wild Rydes application by enabling profile management and profile photo management capabilities. Amazon Cognito will be used to store your user's profile information and attributes whereas Amazon S3 will store your user's profile pictures, with a link to the photo stored in the user's profile information.
 
+4. **Cleanup** - To prevent your account from accruing additional charges, you'll go through and cleanup all the resources you've used for this workshop.
+
 Proceed to the next module to setup your environment.
 

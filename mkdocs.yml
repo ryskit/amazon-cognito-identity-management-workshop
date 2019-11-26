@@ -45,10 +45,10 @@ markdown_extensions:
 # Navigation
 nav:
   - Overview: 'index.md'
-  - '<i>Module 0</i>: Environment setup': '00-env-setup.md'
-  - '<i>Module 1</i>: User signup and authentication': '01-user-auth.md'
-  - '<i>Module 2</i>: Backend authorization with Amazon API Gateway': '02-backend-auth.md'
-  - '<i>Module 3</i>: Retrieving and using temporary AWS credentials': '03-iam-auth.md'
-  - '<i>Module 4</i>: Clean up': '04-clean-up.md'
+  - 'Module 0: Environment setup': '00-env-setup.md'
+  - 'Module 1: Signup and authentication': '01-user-auth.md'
+  - 'Module 2: Backend authorization': '02-backend-auth.md'
+  - 'Module 3: Temporary AWS credentials': '03-iam-auth.md'
+  - 'Module 4: Clean up': '04-clean-up.md'
   - Contributing: 'contribute.md'
   - License: 'license.md'

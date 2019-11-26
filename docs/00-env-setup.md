@@ -8,7 +8,7 @@ This section outlines the prerequisites to complete the workshop and instruction
 
 To setup your environment please expand **one** of the following dropdown sections (depending on how you're doing this workshop) and follow the instructions: 
 
-??? info  "Click here if you're at an *AWS event* where *Event Engine* is being used"
+!!! info  "Click here if you're at an *AWS event* where *Event Engine* is being used"
 	
 	1. Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a>
 	2. Enter the **team hash** code that was distributed to you by the instructors.
@@ -33,19 +33,18 @@ To setup your environment please expand **one** of the following dropdown sectio
 	
     4. On the **Options** click **Next** \(leave everything on this page as the default\).
 
+    4. On the Review page, review the summary details, click the checkbox to **acknowledge IAM capabilities**, and then click **Create stack**.
 
-    4. On the Review page, review the summary details then click **Create stack**.
-
-    !!! warning "It will take a few minutes for the Stack to create."
+    !!! info "It will take a few minutes for the Stack to create."
         Choose the **Stack Info** tab to go to the overall stack status page and wait until the stack is fully launched and shows a status of *CREATE_COMPLETE*. Click the refresh icon periodically to see progress update.
+
+CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore the template which is prefixed with *aws-cloud9-WildRydes-*.
 
 ## Browse to your Cloud9 IDE
 
 <a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes pre-packaged with essential tools for popular programming languages and the AWS Command Line Interface (CLI) pre-installed so you don’t need to install files or configure your laptop for this workshop. 
 
 1. With the **serverless-idm-cloud9** stack selected, click on the **Outputs** tab and copy the value shown for the *Cloud9IDE* to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
-
-    !!! info "When you launch the stack, CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore that template which is prefixed with "aws-cloud9-WildRydes-"."
 
     ![CloudFormation Outputs open Cloud9](./images/cloud9_cfn_outputs.png)
 
@@ -59,9 +58,10 @@ You can run AWS CLI commands in here just like you would on your local computer.
 aws sts get-caller-identity
 ```
 
-You should see output indicating your account and user information:
+You should see output, similar to the code below, indicating your account and user information:
 
 ```
+EXAMPLE OUTPUT - DO NOT COPY
 {
     "Account": "123456789012",
     "UserId": "AKIAI44QH8DHBEXAMPLE",
@@ -97,12 +97,17 @@ cd ~/environment/amazon-cognito-identity-management-workshop/website/
 yarn install
 ```
 
-!!! info  "Keep an open scratch pad open"
-    Keep an open scratch pad in Cloud9 or a text editor on your local computer for notes.  When the step-by-step directions tell you to note something such as an ID or Amazon Resource Name (ARN), copy and paste that into the scratch pad tab.
+!!! info  "Keep a scratch pad for notes"
+    Keep a scratch pad in Cloud9 or a text editor on your local computer for notes.  When the step-by-step directions tell you to note something such as an ID or Amazon Resource Name (ARN), copy and paste that into the scratch pad tab.
+
+
+Within Cloud9, click the **+** symbol and choose to create **New File**. You will use this new blank editor tab as a scratchpad for various resource names and variables.
+
+![Cloud9 Create Scratchpad Tab](./images/cloud9-createscratchpadtab.png)
 
 ## Run the website locally
 
-1. From your Cloud9 workspace, select the terminal window and when you are within your **~/environment/amazon-cognito-identity-management-workshop/website** directory, run the following command to start the local web server 
+1. Run the following command to start the local web server 
 
     ```
     yarn start
