@@ -368,7 +368,7 @@ def lambda_handler(event, context):
     # Return to Amazon Cognito
     return event
 ```
-!!! info     "Be sure to replace the *example.com* domain with one of your choosing."
+!!! info     "Be sure to replace the *example.com* domain after you've tested so that your user can pass the pre-signup validation."
 
 Now that your Lambda function is configured, you can configure the trigger within your Cognito User Pool.
 
