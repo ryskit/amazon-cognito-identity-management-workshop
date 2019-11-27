@@ -23,7 +23,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 !!! warning     "The console's region will default to the last region you were using previously. Change this to the same region where you launched your Cloud9 environment previously."
 
-1. Open the <a href="https://us-east-2.console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
+1. Open the <a href="https://console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
 
 3. Choose **Manage User Pools**.
 
@@ -319,7 +319,7 @@ Return to your browser tab where you started your Wild Rydes application earlier
 
 Once you have finished setting up the user authentication please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).
 
-![Amplify imports order](./images/stop.png)
+![STOP](./images/stop.png)
 
 ---
 
@@ -331,7 +331,7 @@ Your current configuration supports a fairly generic user sign-up and sign-in fl
 
 Use the Lambda triggers to validate the email domain of the user to ensure it's a user from an approved domain prior to allowing them to sign-up.
 
-1. Open the <a href="https://us-east-2.console.aws.amazon.com/lambda/home?" target="_blank">AWS Lambda</a> console.
+1. Open the <a href="https://console.aws.amazon.com/lambda/home?" target="_blank">AWS Lambda</a> console.
 
 2. Choose the **serverless-idm-wksp-pre-sign-up** function.
 
@@ -372,7 +372,7 @@ def lambda_handler(event, context):
 
 Now that your Lambda function is configured, you can configure the trigger within your Cognito User Pool.
 
-1. Open the <a href="https://us-east-2.console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
+1. Open the <a href="https://console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
 
 2. Choose the **WildRydes** User Pool.
 
@@ -386,7 +386,7 @@ Now test out your pre validation logic by deleting the existing user in your Use
 
 Now leverage the **Custom Message** trigger to customize the welcome message.
 
-1. Open the <a href="https://us-east-2.console.aws.amazon.com/lambda/home?" target="_blank">AWS Lambda</a> console.
+1. Open the <a href="https://console.aws.amazon.com/lambda/home?" target="_blank">AWS Lambda</a> console.
 
 2. Choose the **serverless-idm-wksp-custom-message** function.
 

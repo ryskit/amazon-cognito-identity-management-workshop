@@ -44,9 +44,12 @@ us-west-2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home
 
 Now that you have created our Serverless API, you need to update your Wild Rydes web application to integrate with it. You will leverage the AWS Amplify client library to make API calls and inject security seamlessly to support your authentication and authorization scenarios.
 
-First, you need to update the **/website/src/amplify-config.js** file to include your new API Gateway endpoint. Store the endpoint including the /prod at the end in the endpoint property under the **WildRydesAPI** section.
+First, you need to update the **/website/src/amplify-config.js** file to include the following:
 
-!!! tip "Do not change the name `WildRydesAPI` in this configuration file."
+* **endpoint:** Your new API Gateway endpoint.
+* **region:** Your region.
+
+!!! warning "Do NOT change the name `WildRydesAPI`."
 	
 ```
 API: {
@@ -94,7 +97,11 @@ async getData(pin) {
 
 Now that you've integrated code changes to call your new Serverless API, you should test the end-to-end user experience to ensure the application is working correctly. The API currently requires no authentication so any request will currently be accepted until we enable required authentication.
 
-Go back to your browser tab with Wild Rydes running and sign-in again at `/signin`. Once signed in, click anywhere on the map to indicate a pickup location, then select the **Request** button to call your ride.
+1. Go back to the home page of the Wild Rydes application.
+2. Click on **Giddy up** to sign in.
+
+    ![Giddy up!](./images/giddy-up.png)
+3. Once signed in, click anywhere on the map to indicate a pickup location, then select the **Request** button to call your ride.
 
 You should be informed of your unicorn's arrival momentarily.
 
@@ -107,7 +114,7 @@ Since Cognito User Pools implements <a href="https://openid.net/connect/" target
 In the Amazon API Gateway console, create a new Cognito user pool authorizer for your API. Configure it to use the user pool that you created in the previous module. You can test the configuration in the console by copying and pasting the identity token printed to the console after you log in via the `/signin` path of your current website. Once setup, you will change your application's code to send the proper JSON web token with its API requests to authenticate.
 
 
-1. In the AWS Management Console choose **Services** then select **API Gateway** under Networking and Content Delivery.
+1. Open the <a href="https://console.aws.amazon.com/apigateway/home?" target="_blank">Amazon API Gateway</a> console.
 
 2. Choose the API named **WildRydes**.
 
@@ -117,17 +124,17 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 4. Chose **Create New Authorizer**.
 
-5. Enter `WildRydes` for the Authorizer name.
+5. Enter **WildRydes** for the Authorizer name.
 
 6. Select **Cognito** for the type.
 
 7. In the Region drop-down under **Cognito User Pool**, select the Region where you created your Cognito user pool in the last module (by default the current region should be selected).
 
-8. Enter `WildRydes` (or the name you gave your user pool) in the **Cognito User Pool** input.
+8. Select **WildRydes** (or the name you gave your user pool) from the dropdown for the **Cognito User Pool** input.
 
-9. Enter `Authorization` for the **Token Source**.
+9. Enter **Authorization** for the **Token Source**.
 
-10. Leave *Token Validation* **blank** without editing.
+10. Leave *Token Validation* blank without editing.
 
 11. Choose **Create**.
 
@@ -135,7 +142,9 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
 **Verify your authorizer configuration**
 
-12. In a different browser tab, return to your Wild Rydes application and  sign-in if you're not already signed in. After signing in, you should be redirected to */app*. Open your [browser's developer console](https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console) and browse to the console log output section.
+12. In a different browser tab, return to your Wild Rydes application and  sign-in if you're not already signed in. After signing in, you should be redirected to */app*. 
+
+12. Open your <a href="https://support.airtable.com/hc/en-us/articles/232313848-How-to-open-the-developer-console" target="_blank">browser's developer console</a> and browse to the console log output section.
 
 13. Look for the console log to say **Cognito User Identity Token:** and a long string beneath the message.
 
@@ -165,23 +174,23 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 
     ![Method Request Selection](./images/apigateway-method-request-settings.png)
 
-22. Choose the pencil icon next to `Authorization` to edit the setting.
+22. Choose the pencil icon next to **Authorization** to edit the setting.
 
 23. Select your new Cognito Authorizer from the list of options presented.
 	
     !!! tip "If you don't see this option listed, **Reload** the browser page then this authorizer option should appear in the drop-down list."
 
-  ![API Gateway Authorizer Selection](./images/apigateway-authorizer-cognito-selection.png)
+    ![API Gateway Authorizer Selection](./images/apigateway-authorizer-cognito-selection.png)
 
 24. **Save** your selection by clicking the checkmark icon next to the drop down.
 
-  ![API Gateway Authorizer Confirmation](./images/apigateway-authorizer-cognito-confirmation.png)
+    ![API Gateway Authorizer Confirmation](./images/apigateway-authorizer-cognito-confirmation.png)
 
 25. Next, choose the **Actions** button at the top of the resources list.
 
 26. Choose **Deploy API** from the list of options presented.
 
-27. For deployment stage, select `prod` then click **Deploy**.
+27. For deployment stage, select **prod** then click **Deploy**.
 
 28. You've now successfully deployed your new authentication integration to your API's production environment.
 
@@ -230,9 +239,13 @@ If the API now invokes correctly and application functions as expected summoning
 
 ## End of Module 2
 
-Once you have finished setting up the backend authorization please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).  If you've finished Module 2 early and to try out some alternative authorzation methods, feel free to run through the next few sections.
+Once you have finished setting up the backend authorization please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).  
+
+![STOP](./images/stop.png)
 
 ---
+
+If you've finished Module 2 early and to try out some alternative authorzation methods, feel free to run through the next few sections.
 
 In this optional extension, you will update your serverless backend for your Wild Rydes application leveraging Amazon API Gateway and AWS Lambda to use request signing with IAM-based authorization as a more secure authentication option.
 
@@ -250,7 +263,7 @@ This section updates your Serverless backend built earlier using Amazon API Gate
 
 For you to be able to use request signing and IAM-based fine-grained access control, we'll first need to associate an IAM policy that provides permissions to invoke API operations for your API Gateway deployment. For further details, you can review <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html" target="_blank">controlling access to an API with IAM permissions</a> documentation.
 
-1. Go the AWS Management Console, click **Services** then select **IAM** under Security, Identity, and Compliance.
+1. Open the <a href="https://console.aws.amazon.com/iam/home?" target="_blank">AWS IAM</a> console.
 
 1. Choose **Policies**.
 
@@ -268,7 +281,7 @@ For you to be able to use request signing and IAM-based fine-grained access cont
 
 1. Choose **Roles**.
 
-1. Search for *WildRydes* to find the two roles which were created by Cognito Identity Pools when you created the Identity Pool in module one. 
+1. Search for **WildRydes** to find the two roles which were created by Cognito Identity Pools when you created the Identity Pool in module one. 
     
     !!! info "Should you not be able to find the roles here, you can alternatively go to the **Cognito Federated Identities** console, find the correct identity pool, then click **Edit Identity Pool** in the top-right corner to see the roles listed. Each identity pool has both an Unauthenticated user role and an Authenticated user role."
 
@@ -280,7 +293,7 @@ For you to be able to use request signing and IAM-based fine-grained access cont
 
 1. Choose **Attach policies**.
 
-1. Search for `WildRydes` and check the box next to the policy named *WildRydesAPI-StandardUserAccess*.
+1. Search for **WildRydes** and check the box next to the policy named *WildRydesAPI-StandardUserAccess*.
 
 	![Attach API Gateway IAM Policy](./images/iam-cognito-authrole-attach-apigateway-policy.png)
 
@@ -296,7 +309,7 @@ In addition to using JSON Web Tokens (JWTs) for authentication, API Gateway can 
 
 In the Amazon API Gateway console, update the authorization type to *AWS_IAM* for the *POST* method on the */ride* resource. Next, re-deploy the API to make your change take effect.
 
-1. In the AWS Management Console choose **Services** then select **API Gateway** under Networking and Content Delivery.
+1. Open the <a href="https://console.aws.amazon.com/apigateway/home?" target="_blank">Amazon API Gateway</a> console.
 
 2. Choose the API named **WildRydes**.
 
@@ -322,7 +335,7 @@ In the Amazon API Gateway console, update the authorization type to *AWS_IAM* fo
 
 10. Choose **Deploy API** from the list of options presented.
 
-11. For deployment stage, select `prod` then click **Deploy**.
+11. For deployment stage, select **prod** then click **Deploy**.
 
 12. You've now successfully deployed your new authentication integration to your API's production environment.
 
@@ -332,13 +345,17 @@ Now that you've deployed the new authorizer configuration to production, all API
 
 13. Return to your Wild Rydes app, sign in at */signin* if necessary, and attempt to request a ride.
 
-14. You should receive an *Error finding unicorn*. If you open the developer console, you will see that we received a HTTP 401 error, which means it was an unauthorized request.
+14. You should receive an *Error finding unicorn*. If you open the developer console, you will see that we received a HTTP 403 error, which means it was an forbidden request.
 
 	!!! tip "If at first your requests go through without any errors, try requesting a ride again in 30-60 seconds to allow time for the API Gateway changes to fully propagate."
 
 15. Go back to Cloud9 and open the **/website/src/pages/MainApp.js** files.
 
-16. Update your current *getData* method to the following method, which removes the *Authorization* header and adds debugging information to show us the request signature as requests are sent. The default behavior of the AWS Amplify library is the sign all requests with SigV4 signing when no authorization header is specified, so this will automatically sign all requests using this algorithm without extra development effort. **Save your changes** after making this update.
+16. Update your current *getData* method to the following method, which removes the *Authorization* header and adds debugging information to show us the request signature as requests are sent. 
+    
+    !!! info "The default behavior of the AWS Amplify library is the sign all requests with SigV4 signing when no authorization header is specified, so this will automatically sign all requests using this algorithm without extra development effort."
+    
+17.  **Save your changes** after making this update.
 
 ```javascript
     async getData(pin) {
