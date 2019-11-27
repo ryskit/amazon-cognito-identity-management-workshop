@@ -31,10 +31,11 @@ To do this you'll browse to your CloudFormation stack created in the earlier mod
 1. Your final structure for the storage configuration of **amplify-config.js** should look like the following.
 
 ```
-    Storage: {
-        bucket: 'wildrydes-profilepicturesbucket-1rmvuic97osxd',
-        region: 'us-east-1'
-    }
+EXAMPLE OUTPUT - DO NOT COPY
+Storage: {
+    bucket: 'wildrydes-profilepicturesbucket-1rmvuic97osxd',
+    region: 'us-east-2'
+}
 ```
 
 ## Configure IAM permissions
@@ -132,7 +133,7 @@ Authenticate in the Wild Rydes app if you're not already logged in, then browse 
 
 1. Open your Cloud9 IDE environment and open the file at **/website/src/pages/Profile.js**.
 
-1. **Uncomment** the line that says **S3Image**.  It should end up looking like the following: 
+1. **Uncomment** the line that says **S3Image** (remove /\* */).  It should end up looking like the following: 
 
     `{ <S3Image imgKey={this.state.image_key} onLoad={(url) => this.onImageLoad(url)} picker/> }`
 
@@ -168,6 +169,18 @@ async onImageLoad(url) {
 ```
 
 Now with this new method in place, upload a new photo after logging into Wild Rydes then close your browser. Open a new window and try logging in again. Your photo should load as it did previously.
+
+## View the picture attribute in User Pools
+
+Lastly, you can view your user profile in User Pools to ensure the picture attribute has been set.
+
+1. Open the <a href="https://console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
+
+2. Click on the **WildRydes** User Pool.
+
+3. Click **Users and groups**.
+
+4. Click on your user and view the attributes.
 
 ## Conclusion
 

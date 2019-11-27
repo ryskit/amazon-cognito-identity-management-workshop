@@ -66,7 +66,7 @@ Use the AWS console to create an Amazon Cognito User Pool requiring e-mail verif
 
 	![User Pool Setup Step 5](./images/cognito-userpool-setup-step5.png)
 
-17. In the next screen, click the **Add an app client** *link*.
+17. **App clients**: In the next screen, click the **Add an app client** *link*.
 
 18. Input **wildrydes-web-app** as the app client name.
 
@@ -111,7 +111,7 @@ You will need to create a Cognito Identity Pool linked to the Cognito User Pool 
 
 1. Expand **Authentication providers**.
 
-1. Within the Cognito tab, input the User Pool ID and App client Id you copied previously to the scratchpad tab.
+1. Within the Cognito tab, input the **User Pool ID** and **App client ID** you copied previously to the scratchpad tab.
 
 	![Identity Pool Setup Step 1](./images/cognito-identitypool-setup-step1.png)
 
@@ -119,7 +119,7 @@ You will need to create a Cognito Identity Pool linked to the Cognito User Pool 
 
 1. Choose **Allow** to allow Cognito Identity Pools to setup IAM roles for your application's users. Permissions and settings of these roles can be customized later.
 
-1. Copy/paste the **Identity Pool ID**, highlighted in red within the code sample in the Get AWS Credentials section, into your Cloud9 scatchpad editor tab.
+1. Copy the **Identity Pool ID**, highlighted in red within the code sample in the Get AWS Credentials section, into your Cloud9 scatchpad editor tab.
 
 	!!! warning "Do not copy the quotation marks, but include the region code and ":" character."
 
@@ -299,7 +299,7 @@ Return to your browser tab where you started your Wild Rydes application earlier
 
 1. Input the following: 
      * **e-mail address** (needs to be a valid email address since you'll need to verify your account), 
-     * **phone number** with `+country_code` first preceeding the number (use a sample email address such as `+1234567890`)
+     * **phone number** with `+country_code` first preceeding the number (use a sample phone number such as `+12345550100`)
      * **favorite genre** (e.g. `jazz`, `blues`, `classical`, etc.)
      * **password** twice (Your password must include 8 characters, including uppercase and lowercase characters, and at least 1 number and 1 special character.)
 
@@ -416,7 +416,7 @@ def lambda_handler(event, context):
 
 Now that your Lambda function is configured, you can configure the trigger within your Cognito User Pool.
 
-1. In the AWS Management Console choose **Services** then select **Cognito**.
+1. Open the <a href="https://console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
 
 2. Choose the **WildRydes** User Pool.
 
@@ -425,5 +425,3 @@ Now that your Lambda function is configured, you can configure the trigger withi
 6. Under **Custom Message** choose **serverless-idm-wksp-custom-message** and click **Save Changes**.
 
 Now follow the same steps as you previously did to test that the trigger is working as intended.
-
-!!! info "Expect a small delay for the confirmation email."

@@ -52,12 +52,13 @@ First, you need to update the **/website/src/amplify-config.js** file to include
 !!! warning "Do NOT change the name `WildRydesAPI`."
 	
 ```
+EXAMPLE OUTPUT - DO NOT COPY
 API: {
     endpoints: [
         {
             name: 'WildRydesAPI',
             endpoint: 'https://1ngrgqjt6c.execute-api.us-east-1.amazonaws.com/prod',
-            region: 'us-east-1'
+            region: 'us-east-2'
         }
     ]
 },
