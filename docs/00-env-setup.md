@@ -46,7 +46,7 @@ CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resour
 
 1. Open the <a href="https://console.aws.amazon.com/cloudformation/home?" target="_blank">AWS CloudFormation</a> console.
 
-1. With the **serverless-idm-cloud9** stack selected, click on the **Outputs** tab and copy the value shown for the *Cloud9IDE* to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
+1. With the **serverless-idm-cloud9** stack selected (if you're using Event Engine you'll select **mod-xxxx-ServerlessIDMCloud9-xxxx**), click on the **Outputs** tab and copy the value shown for the **Cloud9IDE** to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
 
     ![CloudFormation Outputs open Cloud9](./images/cloud9_cfn_outputs.png)
 
