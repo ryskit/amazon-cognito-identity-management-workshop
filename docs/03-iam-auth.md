@@ -139,6 +139,8 @@ Authenticate in the Wild Rydes app if you're not already logged in, then browse 
 
     This instantiates an Amplify UI component for React apps for image rendering and uploading and only requires this single line of code.
 
+3. **Save** the file.
+
 1. Go back to the Wild Rydes app and visit the **/profile** path after logging in. You should now be able to upload photos with the new image picker.
 
 ## Store profile picture links in Cognito User Pools profile

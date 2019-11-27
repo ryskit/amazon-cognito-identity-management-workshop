@@ -203,7 +203,7 @@ Now that you've deployed the new authorizer configuration to production, all API
 
 30. You should receive an *Error finding unicorn*. If you open the developer console, you will see that we received a HTTP 401 error, which means it was an unauthorized request. To authenticate our requests properly, we need to send an Authorization header.
 
-	!!! tip "If you at first still that you requests go through without any errors, try requesting a ride again in 30-60 seconds to allow the API Gateway changes to fully propagate."
+	!!! tip "If at first your requests go through without any errors, try requesting a ride again in 30-60 seconds to allow the API Gateway changes to fully propagate."
 
 31. Go back to Cloud9 and open the **/website/src/pages/MainApp.js** files.
 
@@ -294,13 +294,13 @@ For you to be able to use request signing and IAM-based fine-grained access cont
 
 1. Choose **Attach policies**.
 
-1. Search for **WildRydes** and check the box next to the policy named *WildRydesAPI-StandardUserAccess*.
+1. Search for **WildRydes** and check the box next to the policy named *WildRydesAPI-StandardUserPolicy*.
 
 	![Attach API Gateway IAM Policy](./images/iam-cognito-authrole-attach-apigateway-policy.png)
 
 1. Choose **Attach policy**.
 
-1. You should now see the *WildRydesAPI-StandardUserAccess* policy associated with your Cognito IAM auth role.
+1. You should now see the *WildRydesAPI-StandardUserPolicy* policy associated with your Cognito IAM auth role.
 
 	![Permissions after adding IAM policy](./images/iam-cognito-authrole-permissions-after-policy-update.png)
 

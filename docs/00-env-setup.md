@@ -38,7 +38,7 @@ To setup your environment please expand **one** of the following dropdown sectio
     !!! info "It will take a few minutes for the Stack to create."
         Choose the **Stack Info** tab to go to the overall stack status page and wait until the stack is fully launched and shows a status of *CREATE_COMPLETE*. Click the refresh icon periodically to see progress update.
 
-CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore the template which is prefixed with *aws-cloud9-WildRydes-*.
+CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resources. You can safely ignore the template which is prefixed with *aws-cloud9-serverless-idm-wksp*.
 
 ## Browse to your Cloud9 IDE
 
