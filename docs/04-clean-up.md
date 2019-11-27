@@ -34,7 +34,7 @@ aws cognito-idp delete-user-pool --user-pool-id YOUR-USER-POOL-ID-HERE
 	
 !!! tip "Copy and paste your user pool ID from your scratch pad (example: us-west-2:us-west-2_srLwFQiEC)."
 
-## Detach IAM Policy
+## Delete Roles and detach IAM Policy
 
 Before you delete the backend stack, you will need to remove the IAM Policy that you manually attached to the **Auth** role. 
 
@@ -43,14 +43,17 @@ Before you delete the backend stack, you will need to remove the IAM Policy that
 2. Search for the **Auth** role and click into it.
 
 	![Find Auth Role](./images/iam-cleanup-findAuthRole.png)
-	
-2. On the Role Summary page, find the policy named **WildRydesAPI-StandardUserPolicy** in the Permissions tab. Once you locate the policy, click the **X** to remove this policy from the IAM Role. A popup window will ask you to confirm that you want to remove it - click the red **Detach** button.
 
 !!! info "Cognito Identity Pool Roles"
     If you don't need the Identity Pool Roles for a different Pool you can delete the following roles:
-    
+
     * **Cognito_wildrydes_identity_poolUnauth_Role**
     * **Cognito_wildrydes_identity_poolAuth_Role**
+
+**If you completed the Module 2 extension and need to keep your Cognito Roles, you can complete the next two steps to delete the attached policy**
+	
+2. On the Role Summary page, find the policy named **WildRydesAPI-StandardUserPolicy** in the Permissions tab. Once you locate the policy, click the **X** to remove this policy from the IAM Role. A popup window will ask you to confirm that you want to remove it - click the red **Detach** button.
+3. Repeat for the policy named **WildRydes-S3Access**.
 
 ## Remove WildRydes Backend
 
