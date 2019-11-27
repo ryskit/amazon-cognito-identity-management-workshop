@@ -44,6 +44,8 @@ CloudFormation deploys a nested CloudFormation stack to launch the Cloud9 resour
 
 <a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes pre-packaged with essential tools for popular programming languages and the AWS Command Line Interface (CLI) pre-installed so you don’t need to install files or configure your laptop for this workshop. 
 
+1. Open the <a href="https://console.aws.amazon.com/cloudformation/home?" target="_blank">AWS CloudFormation</a> console.
+
 1. With the **serverless-idm-cloud9** stack selected, click on the **Outputs** tab and copy the value shown for the *Cloud9IDE* to the clipboard. Browse to that URL in a new browser tab to load your IDE environment.
 
     ![CloudFormation Outputs open Cloud9](./images/cloud9_cfn_outputs.png)
