@@ -16,9 +16,9 @@ You will need to configure AWS Amplify to securely store profile images in an S3
 
 To do this you'll browse to your CloudFormation stack created in the earlier modules and find the name of the S3 bucket under Outputs. Once you have the name you'll modify your **amplify-config.js** file again and update the storage section with the bucket's name and region.
 
-1. Go the AWS Management Console, click **Services** then select **CloudFormation** under Management Tools.
+1. Open the <a href="https://console.aws.amazon.com/cloudformation/home?" target="_blank">AWS CloudFormation</a> console.
 
-1. In the CloudFormation console, click on your Wild Rydes stack name, such as **WildRydesBackend**.
+1. In the CloudFormation console, click on your Wild Rydes stack name **serverless-idm-backend**.
 
 1. Click on the **Outputs** tab.
 
@@ -39,16 +39,16 @@ To do this you'll browse to your CloudFormation stack created in the earlier mod
 
 ## Configure IAM permissions
 
-Though you could now attempt uploading photos via AWS Amplify, Amplify would use your Cognito Identity Pool roles that were created in module 1 which currently has no policies associated so you would not have access to the S3 bucket created. You need to next update our roles to have policies that grant access to our S3 photo bucket.
+Though you could now attempt uploading photos via AWS Amplify, Amplify would use your Cognito Identity Pool roles that were created in module 1 which currently has no policies associated so you would not have access to the S3 bucket created. You need to next update your roles to have policies that grant access to your S3 photo bucket.
 
 Browse to the IAM console and find your Cognito Identity Pool's authenticated user role. Create an in-line policy on this role which provides for <a href="https://aws-amplify.github.io/docs/js/storage#file-access-levels" target="_blank">S3 bucket protected and private-level access</a> per-user by leveraging IAM policy variables. 
 
 
-1. Go the AWS Management Console, click **Services** then select **IAM** under Security, Identity, and Compliance.
+1. Open the <a href="https://console.aws.amazon.com/iam/home?" target="_blank">AWS IAM</a> console.
 
 1. Choose **Roles**.
 
-1. Search for *WildRydes* to find the two roles which were created by Cognito Identity Pools when you created the Identity Pool in module one. 
+1. Search for **WildRydes** to find the two roles which were created by Cognito Identity Pools when you created the Identity Pool in module one. 
 
     !!! info "Should you not be able to find the roles here, you can alternatively go to the **Cognito Federated Identities** console, find the correct identity pool, then click **Edit Identity Pool** in the top-right corner to see the roles listed. Each identity pool has both an Unauthenticated user role and an Authenticated user role."
 
@@ -56,8 +56,6 @@ Browse to the IAM console and find your Cognito Identity Pool's authenticated us
 	
 	![IAM WildRydes Auth Role Selction](./images/iam-wildrydes-role-selection.png)
 	
-1. We want to grant permissions to this role explicitly so we will use an inline policy, which would be deleted with this role if it were ever to be deleted.
-
 1. Choose **Add inline policy** on the right-hand side to create a new inline policy associated to this IAM role.
 
 	![Add inline policy to WildRydes auth role](./images/iam-wildrydes-auth-role-add-inline-policy.png)
@@ -117,7 +115,7 @@ Browse to the IAM console and find your Cognito Identity Pool's authenticated us
 ```
 1. Choose **Review policy**.
 
-1. Name the policy `WildRydes-S3Access`.
+1. Name the policy **WildRydes-S3Access**.
 
 1. After reviewing for accuracy and any syntax errors, choose **Create policy**.
 
@@ -134,19 +132,23 @@ Authenticate in the Wild Rydes app if you're not already logged in, then browse 
 
 1. Open your Cloud9 IDE environment and open the file at **/website/src/pages/Profile.js**.
 
-1. **Uncomment** the line that says **S3Image**. This instantiates an Amplify UI component for React apps for image rendering and uploading and only requires this single line of code.
+1. **Uncomment** the line that says **S3Image**.  It should end up looking like the following: 
+
+    `{ <S3Image imgKey={this.state.image_key} onLoad={(url) => this.onImageLoad(url)} picker/> }`
+
+    This instantiates an Amplify UI component for React apps for image rendering and uploading and only requires this single line of code.
 
 1. Go back to the Wild Rydes app and visit the **/profile** path after logging in. You should now be able to upload photos with the new image picker.
 
 ## Store profile picture links in Cognito User Pools profile
 
-With our image uploads now working, all will work as expected until you close your browser, but at that point the reference between your user profile and your profile picture will be lost. To fix this, you will leverage a Cognito User Pools user attribute called *picture* to persist the S3 object key so the same image can be loaded upon each login and persisted to be shown to the unicorns when you request a ride. You will need to update */website/src/pages/Profile.js* and a method called *onImageLoad* to make this possible.
+With your image uploads now working, all will work as expected until you close your browser, but at that point the reference between your user profile and your profile picture will be lost. To fix this, you will leverage a Cognito User Pools user attribute called *picture* to persist the S3 object key so the same image can be loaded upon each login and persisted to be shown to the unicorns when you request a ride. You will need to update */website/src/pages/Profile.js* and a method called *onImageLoad* to make this possible.
 
 Implement a method to persist the images uploaded to the current user's Cognito *picture* attribute each time the image is changed.
 
 1. Open your Cloud9 IDE environment and open the file at **/website/src/pages/Profile.js**.
 
-1. The S3Image UI component has a built-in method called **onImageLoad** which provides in its invocation the full URL of any image uploaded. We will make use of this built-in function to persist our image URLs out to Cognito.
+1. The S3Image UI component has a built-in method called **onImageLoad** which provides in its invocation the full URL of any image uploaded. We will make use of this built-in function to persist your image URLs out to Cognito.
 
 1. Replace the existing **onImageLoad** function with the following code:
 
@@ -173,4 +175,4 @@ Congratulations! You've completed the Wild Rydes Auth workshop. We hope that thi
 
 Please proceed to the next module to run through the clean up steps to ensure you decommission all resources spun up during the workshop today.
 
-Thank you for participating in this workshop!
+Thank you for participating!

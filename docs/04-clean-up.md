@@ -38,11 +38,19 @@ aws cognito-idp delete-user-pool --user-pool-id YOUR-USER-POOL-ID-HERE
 
 Before you delete the backend stack, you will need to remove the IAM Policy that you manually attached to the **Auth** role. 
 
-1. Navigate to the Identity and Access Management (IAM) Console and search for the **Auth** role and click into it.
+1. Open the <a href="https://console.aws.amazon.com/iam/home?" target="_blank">AWS IAM</a> console.
+
+2. Search for the **Auth** role and click into it.
 
 	![Find Auth Role](./images/iam-cleanup-findAuthRole.png)
 	
 2. On the Role Summary page, find the policy named **WildRydesAPI-StandardUserPolicy** in the Permissions tab. Once you locate the policy, click the **X** to remove this policy from the IAM Role. A popup window will ask you to confirm that you want to remove it - click the red **Detach** button.
+
+!!! info "Cognito Identity Pool Roles"
+    If you don't need the Identity Pool Roles for a different Pool you can delete the following roles:
+    
+    * **Cognito_wildrydes_identity_poolUnauth_Role**
+    * **Cognito_wildrydes_identity_poolAuth_Role**
 
 ## Remove WildRydes Backend
 
@@ -51,7 +59,6 @@ Next, you will need to remove the *CloudFormation stack* for the API. This stack
 ```
 aws cloudformation delete-stack --stack-name serverless-idm-backend
 ```
-!!! tip "If you changed the name of your stack from the default, you will need to update the stack name to what you changed it to.  If you clicked the quick link in the instructions, no adjustment to the above command is needed. You can run `aws cloudformation describe-stacks` to find the your stack name."
 
 ## Remove Cloud9 and VPC Stack
 
@@ -60,8 +67,6 @@ aws cloudformation delete-stack --stack-name serverless-idm-backend
 ```
 aws cloudformation delete-stack --stack-name serverless-idm-cloud9
 ```
-	
-!!! tip "If you changed the name of your stack from the default, you will need to update the stack name to what you changed it to.  If you clicked the quick link in the instructions, no adjustment to the command above is needed.  You can run `aws cloudformation describe-stacks` to find your stack name."
 
 
 ## Finished!
