@@ -46,7 +46,7 @@ markdown_extensions:
 nav:
   - Overview: 'index.md'
   - 'Module 0: Environment setup': '00-env-setup.md'
-  - 'Module 1: Signup and authentication': '01-user-auth.md'
+  - 'Module 1: Sign-up and sign-in': '01-user-auth.md'
   - 'Module 2: Backend authorization': '02-backend-auth.md'
   - 'Module 3: Temporary AWS credentials': '03-iam-auth.md'
   - 'Module 4: Clean up': '04-clean-up.md'
