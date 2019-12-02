@@ -72,11 +72,9 @@ EXAMPLE OUTPUT - DO NOT COPY
 ```
 !!! warning "Keep your AWS Cloud9 IDE opened in a tab throughout this workshop as you'll be using it for most all activities."
 
-## Download Workshop Code
+## Download your workshop code
 
-1. Switch to the tab where you have your Cloud9 IDE opened.
-
-2. Clone the workshop repository to your IDE environment by running the following command in the Cloud9 terminal window:
+1. **Validate** that your code has been downloaded by ensuring the **amazon-cognito-identity-management-workshop** folder exists in the left navigation within your Cloud9 IDE.  If it **does not**, run the following command.
 
 ```
 git clone https://github.com/aws-samples/amazon-cognito-identity-management-workshop.git
