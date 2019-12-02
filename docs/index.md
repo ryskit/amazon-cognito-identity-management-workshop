@@ -19,6 +19,9 @@ See the diagram below for a depiction of the complete architecture.
 
 ![Wild Rydes Web Application Architecture](./images/wildrydes-complete-architecture.png)
 
+## Presentation deck
+<a href="./images/SEC403.pdf" target="_blank">Workshop Presentation Deck</a>
+
 ## Modules
 
 This workshop is split into multiple modules. Each module builds upon the previous module as you expand the Wild Rydes application. You must complete each module before proceeding to the next.
@@ -30,6 +33,8 @@ This workshop is split into multiple modules. Each module builds upon the previo
 3. **Retrieving and using temporary AWS credentials** - In this module, you will expand your Wild Rydes application by enabling profile management and profile photo management capabilities. Amazon Cognito will be used to store your user's profile information and attributes whereas Amazon S3 will store your user's profile pictures, with a link to the photo stored in the user's profile information.
 
 4. **Cleanup** - To prevent your account from accruing additional charges, you'll go through and cleanup all the resources you've used for this workshop.
+
+
 
 Proceed to the next module to setup your environment.
 

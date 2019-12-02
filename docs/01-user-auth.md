@@ -1,6 +1,6 @@
 # Module 1 <small>User sign-up and sign-in</small>
 
-**Time**: 45 minutes
+**Time**: 40 minutes
 
 In this module, you will create an Amazon Cognito User Pool and Identity Pool for the Wild Rydes application. The Cognito User Pool will store user profile information and provide sign-up and sign-in capabilities, with the Cognito Identity Pool providing the ability to assume an Identity and Access Management (IAM) role from within the application.
 
