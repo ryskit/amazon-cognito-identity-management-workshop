@@ -421,6 +421,54 @@ Now that your Lambda function is configured, you can configure the trigger withi
 
 6. Under **Custom Message** choose **serverless-idm-wksp-custom-message** and click **Save Changes**.
 
-Now follow the same steps as you previously did to test that the trigger is working as intended.
+## Optional: Customize the claims in the ID Token
+
+Now leverage the **pre token generation** trigger to customize the claims in the ID token before it is issued.
+
+1. Open the <a href="https://console.aws.amazon.com/lambda/home?" target="_blank">AWS Lambda</a> console.
+
+2. Choose the **serverless-idm-wksp-pre-token-gen** function.
+
+    !!! info     "The function was automatically created as part of the environment configuration CloudFormation template but is missing the application code."
+
+3. Copy and paste the code below and save your function:
+
+```python
+from __future__ import print_function
+
+def lambda_handler(event, context):
+
+    # Log event
+    print(event)
+
+    # Customize the token
+    if event['triggerSource'] == 'TokenGeneration_Authentication':
+        event['response']['claimsOverrideDetails'] = {
+            # Suppress the phone number claims
+            'claimsToSuppress': ['phone_number', 'phone_number_verified'],
+            # Add a rewards claim
+            'claimsToAddOrOverride': {
+                "rewards": "platinum"
+            },
+        }
+        
+    # Return to Amazon Cognito
+    
+    return event
+```
+
+!!! question     "Take note of the event TriggerSource.  When else will this Lambda function get triggered?"
+
+Now that your Lambda function is configured, you can configure the trigger within your Cognito User Pool.
+
+1. Open the <a href="https://console.aws.amazon.com/cognito/home?" target="_blank">Amazon Cognito</a> console.
+
+2. Choose the **WildRydes** User Pool.
+
+3. Click **Triggers** on the left navigation.
+
+6. Under **Pre Token Generation** choose **serverless-idm-wksp-pre-token-gen** and click **Save Changes**.
+
+Now you can authenticate to the application again, copy the ID token, and paste it into <a href="http://jwt.io" target="_blank">JWT.io</a> to verify that the claims have been dynamically updated.
 
 ![STOP](./images/stop.png)
