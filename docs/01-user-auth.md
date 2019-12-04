@@ -318,8 +318,6 @@ Return to your browser tab where you started your Wild Rydes application earlier
 
 Once you have finished setting up the user authentication please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).
 
-![STOP](./images/stop.png)
-
 ---
 
 If you've finished Module 1 early and would like to further customize the user sign up experience, feel free to run through the next section below.
@@ -424,3 +422,5 @@ Now that your Lambda function is configured, you can configure the trigger withi
 6. Under **Custom Message** choose **serverless-idm-wksp-custom-message** and click **Save Changes**.
 
 Now follow the same steps as you previously did to test that the trigger is working as intended.
+
+![STOP](./images/stop.png)

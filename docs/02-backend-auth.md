@@ -242,8 +242,6 @@ If the API now invokes correctly and application functions as expected summoning
 
 Once you have finished setting up the backend authorization please wait for the instructions from the presenter to move on to the next module (unless you're running this on your own).  
 
-![STOP](./images/stop.png)
-
 ---
 
 If you've finished Module 2 early and to try out some alternative authorzation methods, feel free to run through the next few sections.
