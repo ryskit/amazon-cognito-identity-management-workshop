@@ -4,7 +4,7 @@ In this workshop, you learn how to build a serverless customer-facing microservi
 
 * **Level**: Advanced
 * **Duration**: 2 hours
-* **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Prevent
+* **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Protect
 * **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative
 * **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a href>**: AWS Account, Admin IAM User
 * **AWS Services**: <a href="https://aws.amazon.com/cognito/" target="_blank">Amazon Cognito</a>, <a href="https://aws.amazon.com/api-gateway/" target="_blank">Amazon API Gateway</a>, <a href="https://aws.amazon.com/lambda/" target="_blank">AWS Lambda</a>, <a href="https://aws.amazon.com/iam/" target="_blank">AWS IAM</a>
