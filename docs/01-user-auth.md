@@ -316,6 +316,8 @@ Once you have finished setting up the user authentication please wait for the in
 
 ---
 
+## Optional extensions
+
 If you've finished Module 1 early and would like to further customize the user sign up experience, feel free to run through any of the extensions below:
 
 * **Extension 1**: [Lambda triggers](./01-user-auth-triggers.md)
