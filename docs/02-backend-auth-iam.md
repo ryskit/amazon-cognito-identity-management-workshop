@@ -1,4 +1,4 @@
-# Module 2 <small>Extension 1 - API Gateway Authorization with AWS IAM</small>
+# Module 2 <small>EXT 1 - API Gateway Authorization with AWS IAM</small>
 
 **Time**: 15 minutes
 

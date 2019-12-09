@@ -1,4 +1,4 @@
-# Module 1 <small>Extension 1 - Lambda Triggers</small>
+# Module 1 <small> EXT 1 - Lambda Triggers</small>
 
 **Time**: 10 minutes
 
