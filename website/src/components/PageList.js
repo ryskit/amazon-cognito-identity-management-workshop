@@ -22,7 +22,8 @@ const PageList = () => {
         { url: '/investors', title: 'Investors & Board of Directors' },
         { url: '/faq', title: 'FAQ' },
         { url: '/profile', title: 'Profile' },
-        { url: '/register', title: 'Apply' }
+        { url: '/register', title: 'Register' },
+        { url: '/signin', title: 'Sign In' }
     ];
 
     return (

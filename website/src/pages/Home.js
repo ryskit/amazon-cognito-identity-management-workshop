@@ -130,9 +130,6 @@ const Home = () => {
       </header>
       <AboutSection/>
       <StorySection/>
-      <SignUpSection/>
-      <QuoteSection/>
-      <KrakenSection/>
       <SiteFooter/>
     </div>
   );

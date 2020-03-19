@@ -16,6 +16,7 @@ import React from 'react';
 import { Auth } from 'aws-amplify';
 import DynamicImage from '../components/DynamicImage';
 import { withRouter } from 'react-router-dom';
+import SiteNav from '../components/SiteNav';
 
 import '../css/app.css';
 
@@ -76,6 +77,7 @@ class SignIn extends React.Component {
         </header>
         <section className="form-wrap">
           <h1>Sign in</h1>
+          <SiteNav/>
           <form id="registrationForm" onSubmit={(e) => this.onSubmitForm(e)}>
             <input className={isValidEmail?'valid':'invalid'} type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.onEmailChanged(e)}/>
             <input className={isValidPassword?'valid':'invalid'} type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.onPasswordChanged(e)}/>
