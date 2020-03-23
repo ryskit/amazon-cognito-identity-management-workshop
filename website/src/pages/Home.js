@@ -14,8 +14,6 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DynamicImage from '../components/DynamicImage';
-import EmailSignUp from '../components/EmailSignUp';
 import SiteNav from '../components/SiteNav';
 import SiteFooter from '../components/SiteFooter';
 
@@ -65,55 +63,6 @@ const StorySection = () => (
       <p className="content">
         Wild Rydes was started by a former hedge fund analyst and a software developer. The two long-time friends happened upon the Wild Rydes idea after attending a silent yoga retreat in Nevada. After gazing upon the majestic herds of unicorns prancing across a surreal Nevada sunset, they witnessed firsthand the poverty and unemployment endemic to that once proud race. Whether it was modern society’s reliance on science over magic or not, we’ll never know the cause of their Ozymandian downfall and fade to obscurity. Moved by empathy, romance, and free enterprise, they saw an opportunity to marry society’s demand for faster, more flexible transportation to underutilized beasts of labor through an on-demand market making transportation app. Using the founders’ respective expertise in animal husbandry and software engineering, Wild Rydes was formed and has since raised untold amounts of venture capital. Today, Wild Rydes has thousands of unicorns in its network fulfilling hundreds of rydes each day.
       </p>
-    </div>
-  </section>
-);
-
-const SignUpSection = () => (
-  <section className="home-sign-up">
-    <div className="row column">
-      <DynamicImage src="wr-home-w.png"/>
-      <EmailSignUp/>
-      <div className="apps">
-        <a className="app-icon" href=""><DynamicImage src="wr-home-apple.png"/></a>
-        <a className="app-icon" href=""><DynamicImage src="wr-home-google.png"/></a>
-      </div>
-      <div className="social">
-        <a className="icon-fb" href="">Facebook</a>
-        <a className="icon-tw" href="">Twitter</a>
-        <a className="icon-ig" href="">Instagram</a>
-        <a className="icon-wc" href="">Wechat</a>
-        <a className="icon-wb" href="">Weibo</a>
-      </div>
-    </div>
-  </section>
-);
-
-const QuoteSection = () => (
-  <section className="home-quote">
-    <div className="row column medium-8 xxlarge-6">
-      <div className="quote-wrap">
-        <div className="quote">
-          “I was almost late to my ultimate frisbee tournament in DOLORES park. BUt Wild Rydes Got me there from the marina in under five minutes.”
-        </div>
-        <div className="quoter">- Satisfied Wild Rydes User</div>
-      </div>
-    </div>
-  </section>
-);
-
-const KrakenSection = () => (
-  <section className="kraken-callout">
-    <div className="row">
-      <div className="columns medium-6 xxlarge-4 xxlarge-offset-2">
-        <DynamicImage src="wr-home-kraken.png"/>
-      </div>
-      <div className="columns medium-6 xlarge-5 xxlarge-4">
-        <h4 className="title">Coming Soon</h4>
-        <p className="content">
-          Kraken 3xplorer and Dragon Flyght. We’re looking to provide you a full service package from air, land, and to sea.
-        </p>
-      </div>
     </div>
   </section>
 );
