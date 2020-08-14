@@ -59,16 +59,20 @@ Amazon Cognito User Pools lets you add user sign-up and sign-in capabilities to 
 18. **App clients**: Input **wildrydes-web-app** as the app client name.
 
 19. **App clients**: Uncheck the following:
+    *  *Set the expiration of the identity and access tokens to 45 minutes*
     *  *Generate client secret*
-    *  *Enable lambda trigger based custom authentication*. 
+    *  *Enable SRP protocol based authentication*. 
 
-    !!! info "Client secrets"
-        Client secrets are known only to your application and the authorization server. They are used for server-side applications authentication and are not needed for JavaScript applications.  They are also are not compatible with the Amplify JS SDK since it's a client library.
+    !!! info "App client settings"
+        **Token expiration customization** - Each token expiration can be customized per your application design requirements.
+
+        **Client secrets** - These are known only to your application and the authorization server. They are used for server-side applications authentication and are not needed for JavaScript applications.  They are also are not compatible with the Amplify JS SDK since it's a client library.
+
+        **Auth flows configuration** - These authentication flows are all specific to the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html" target="_blank">Amazon Cognito APIs</a>, **not** the OAuth flows made available through the hosted Cognito authorization server.
+
+
 
     ![User Pool Setup Step 6](./images/cognito-userpool-setup-step6.png)
-
-    !!! info "Auth Flows Configuration"
-        This configuration allows you to configure the allowed authentication flows for the app client.  These authentication flows are all specific to the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html" target="_blank">Amazon Cognito APIs</a>, **not** the OAuth flows made available through the hosted Cognito authorization server.
 
 20. **App clients**: Choose **Create app client** and click **Next step**.
 
