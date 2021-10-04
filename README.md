@@ -1,10 +1,8 @@
 ## AWS Identity: Using Cognito for serverless consumer apps
 
-In this workshop, you learn how to build a serverless customer-facing microservices application demonstrating end-to-end authentication and authorization using Amazon Cognito, Amazon API Gateway, AWS Lambda, and all things AWS Identity and Access Management (IAM). You have the opportunity to build an end-to-end functional app with a secure identity provider showcasing user authentication patterns.
+***THIS WORKSHOP HAS BEEN MOVED TO THE FOLLOWING LOCATION:***
 
-## Start the workshop:
-
-Visit the site to get started: [https://serverless-idm.awssecworkshops.com/](https://serverless-idm.awssecworkshops.com/)
+[https://catalog.us-east-1.prod.workshops.aws/v2/workshops/bc60f0b2-991f-4df9-933c-234a67e75179/en-US](https://catalog.us-east-1.prod.workshops.aws/v2/workshops/bc60f0b2-991f-4df9-933c-234a67e75179/en-US)
 
 ## License
 
